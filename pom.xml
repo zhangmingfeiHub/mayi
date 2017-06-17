@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.mfzhang</groupId>
+	<artifactId>mayi</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Mayi</name>
+	
+	<modules>
+		<module>mayi-common</module>
+		<module>mayi-datasource</module>
+	</modules>
+	
+	<properties>
+		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+		<jdk.version>1.8</jdk.version>
+	
+		<spring.version>4.3.9.RELEASE</spring.version>
+		<junit.version>4.12</junit.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<!-- spring jar -->
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-core</artifactId>
+			    <version>${spring.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-context</artifactId>
+			    <version>${spring.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-beans</artifactId>
+			    <version>${spring.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-web</artifactId>
+			    <version>${spring.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-webmvc</artifactId>
+			    <version>${spring.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			
+			<!-- test jar -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-compiler-plugin</artifactId>
+				    <version>${maven-compiler-plugin.version}</version>
+				    <configuration> <!-- 插件的全局配置，所有的插件目标的任务都会使用这些配置 -->
+				    	<source>${jdk.version}</source>
+				    	<target>${jdk.version}</target>
+				    </configuration>
+				</plugin>
+				
+				<!-- 打源码包插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-source-plugin</artifactId>
+				    <version>${maven-source-plugin.version}</version>
+				    <executions> <!-- 插件执行的配置 -->
+				    	<execution> <!-- 执行任务，可以有多个。插件目标自定义绑定到生命周期的某个阶段 -->
+				    		<id>mfzhang-exe-1</id> <!-- id 自定义 -->
+				    		<phase>verify</phase> <!-- maven的 default 生命周期 verify阶段 -->
+				    		<goals>
+				    			<goal>jar-no-fork</goal> <!-- 插件目标，可以配置多个 -->
+				    		</goals>
+				    	</execution>
+				    </executions>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-antrun-plugin</artifactId>
+				    <version>${maven-antrun-plugin.version}</version>
+				    <executions>
+				    	<execution>
+				    		<id>mfzhang-ant-verify</id>
+				    		<phase>verify</phase>
+				    		<goals>
+				    			<goal>run</goal>
+				    		</goals>
+				    		<configuration> <!-- 特定执行的任务配置 -->
+				    			<target>
+				    				<echo>target: ant's bound to verify</echo>
+				    			</target>
+				    			<!-- <tasks> 该标签过期了，用target标签替代
+				    				<echo>tasks: ant's bound to verify</echo>
+				    			</tasks> -->
+				    		</configuration>
+				    	</execution>
+				    	<!-- <execution>
+				    		<id>mfzhang-ant-verfiy</id>
+				    		<phase>verify</phase>
+				    		<goals>
+				    			<goal>run</goal>
+				    		</goals>
+				    		<configuration>
+				    			<tasks>
+				    				<echo>ant's bound to verify</echo>
+				    			</tasks>
+				    		</configuration>
+				    	</execution> -->
+				    </executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
