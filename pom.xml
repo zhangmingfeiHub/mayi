@@ -10,7 +10,8 @@
 	
 	<modules>
 		<module>mayi-common</module>
-		<module>mayi-datasource</module>
+		<module>mayi-datasource-api</module>
+		<module>mayi-datasource-service</module>
 	</modules>
 	
 	<properties>
