@@ -2,11 +2,88 @@
 <!DOCTYPE generatorConfiguration
   PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-  
-<generatorConfiguration>
-  <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />
 
-  <context id="DB2Tables" targetRuntime="MyBatis3">
+<!-- 生成器配置根节点: 
+【子元素（严格排序）】：
+1、<properties> （0个或1个）
+2、<classPathEntry> （0个或多个）
+3、<context> （1个或多个）
+ -->  
+<generatorConfiguration>
+
+  <!-- 
+  指定外部属性文件，通过${}形式引用外部属性；
+  resource: 相对路径，指定相对classpath下的属性文件；
+  url: 绝对路径，指定系统上的特定位置属性文件；
+   -->
+  <properties resource="db.properties" />
+  
+  <!-- 
+  将MBG运行时需要用到的jar添加到classpath下；
+  location：绝对路径；
+   -->
+  <!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" /> -->
+  
+  
+  
+  
+
+  <!-- 指定生成一组对象环境，可指定要运行的context；
+  【属性】
+  id: 必选，唯一确定context；
+  defaultModelType: 可选，定义MBG如何生成实体类；【属性值：
+      1、conditional，默认值，与hierarchical值类似，不同之处在于：如果单独生成的类只包含一个字段，则不会单独生成，
+      即如果表只有一个主键字段，则不会为主键单独生成一个实体类，会把主键字段合并到和其他字段一起；
+      2、flat，该模型表示为每一张表只生成一个实体类，该实体类包含表中所有字段；
+      3、hierarchical，如果表有主键，则会单独生成主键实体类；如果表中有BLOB类型字段，则会生成包含表中所有BLOB字段的实体类；
+      为其他字段生成实体类；MBG会维护这些实体类的继承关系；】
+  targetRuntime：可选，指定生成的代码的运行环境；【属性值：
+      1、MyBatis3，默认值，
+      2、MyBatis3Simple，如果你希望不生成和Example查询有关的内容，可以选择该属性值；
+      3、Ibatis2Java2
+      4、Ibatis2Java5 
+  introspectedColumnImpl：该参数可以指定扩展org.mybatis.generator.api.IntrospectedColumn该类的实现类；】
+  
+  
+  【子元素（严格排序）】
+1、<property> (0个或多个)，（分隔符概念，如果表名或字段名为SQL关键字，则可使用分隔符，mysql中是反单引号(`)，如 `STATUS`），【属性：
+    1、autoDelimitKeywords，当表名或者字段名为SQL关键字的时候，可以设置该属性为true，MBG会自动给表名或字段名添加分隔符；
+    2、beginningDelimiter，由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写，所以还要将这两个默认值改为反单引号；
+    3、endingDelimiter，
+    4、javaFileEncoding，设置要使用的Java文件的编码，默认使用当前平台的编码，只有当生产的编码需要特殊指定时才需要使用，一般用不到；
+    5、javaFormatter，如果你想使用模板来定制生成的java文件和xml文件的样式，你可以通过指定这两个属性的值来实现；
+    6、xmlFormatter 】
+    
+2、<plugin> (0个或多个) 【定义一个插件，插件用于扩展或修改通过(MBG)代码生成器生成的代码，插件将按在配置中配置的顺序执行】
+
+3、<commentGenerator> (0个或1个) 【最多只能1个，用于在实体类中生成字段或表的注释，
+    1、type，可选属性，指定实现org.mybatis.generator.api.CommentGenerator接口的类，实现类必须要有个默认构造方法；
+    默认的特殊值DEFAULT，会使用默认的实现了CommentGenerator接口的实现类org.mybatis.generator.internal.DefaultCommentGenerator；
+    默认的实现类中suppressAllComments和suppressDate 可选属性，通过<property>元素配置，
+    ①、suppressAllComments:阻止生成注释，默认为false
+    ②、suppressDate:阻止生成的注释包含时间戳，默认为false；
+    一般情况下由于MBG生成的注释信息没有任何价值，而且有时间戳的情况下每次生成的注释都不一样，使用版本控制的时候每次都会提交 】
+
+4、<jdbcConnection> (1个)
+5、<javaTypeResolver> (0个或1个)
+6、<javaModelGenerator> (1个)
+7、<sqlMapGenerator> (0个或1个)
+8、<javaClientGenerator> (0个或1个)
+9、<table> (1个或多个)
+   -->
+  <context id="mysqlDatasource" defaultModelType="flat">
+    <!-- 配置开始和结束分隔符 -->
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/> 
+    
+    <!-- <plugin type=""></plugin> -->
+    
+    <!-- 配置阻止使用默认的注释生成类  生成注释 -->
+    <commentGenerator>
+    	<property name="suppressAllComments" value="true"/>
+    	<property name="suppressDate" value="true"/>
+    </commentGenerator>
+  
     <jdbcConnection driverClass="COM.ibm.db2.jdbc.app.DB2Driver"
         connectionURL="jdbc:db2:TEST"
         userId="db2admin"
@@ -39,4 +116,5 @@
     </table>
 
   </context>
+  
 </generatorConfiguration>
