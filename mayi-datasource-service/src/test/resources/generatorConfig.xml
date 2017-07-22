@@ -65,11 +65,108 @@
     一般情况下由于MBG生成的注释信息没有任何价值，而且有时间戳的情况下每次生成的注释都不一样，使用版本控制的时候每次都会提交 】
 
 4、<jdbcConnection> (1个)
+【
+driverClass: 必选，访问数据库的JDBC驱动程序的完全限定类名；
+connectionURL: 必选，访问数据库的JDBC连接URL；(jdbc:mysql://db201.dev.rs.com:3306/db_digital)
+userId: 可选，访问数据库的用户ID；
+password: 可选，访问数据库的密码；
+###此外该元素还可以接受多个<property>子元素，这里配置的<property>属性都会添加到JDBC驱动的属性中###
+】
+
 5、<javaTypeResolver> (0个或1个)
+【
+这个元素的配置用来指定JDBC类型和Java类型如何转换；
+
+1. 提供了一个可选的属性type，一般情况下使用默认即可；
+默认实现类有一个可配置的元素（用<property/> 配置），可配置属性是forceBigDecimals，
+该属性可以控制是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal,默认值为false，一般不需要配置，
+如果设置为true，那么一定会使用java.math.BigDecimal；
+
+默认情况下的转换规则为：
+如果精度>0或者长度>18，就会使用java.math.BigDecimal
+如果精度=0并且10<=长度<=18，就会使用java.lang.Long
+如果精度=0并且5<=长度<=9，就会使用java.lang.Integer
+如果精度=0并且长度<5，就会使用java.lang.Short
+
+】
+
 6、<javaModelGenerator> (1个)
+【
+用来控制生成的实体类；
+
+targetPackage: 可选，生成实体类存放的包名，一般就是放在该包下。实际还会受到其他配置的影响(<table>中会提到)；（targetPackage="com.mfzhang.mayi.datasource.domain"）
+targetProject:指定目标项目路径，可以是绝对路径或相对路径（如 targetProject="src/main/java" || targetProject="D:\work\proj\git\mayi\mayi-datasource-api\src\main\java"）；
+
+元素支持以下几个<property>子元素属性：
+constructorBased:该属性只对MyBatis3有效，如果true就会使用构造方法入参，如果false就会使用setter方式。默认为false；
+enableSubPackages:如果true，MBG会根据catalog和schema来生成子包。如果false就会直接用targetPackage属性。默认为false；
+immutable:该属性用来配置实体类属性是否可变，如果设置为true，那么constructorBased不管设置成什么，都会使用构造方法入参，并且不会生成setter方法。
+                           如果为false，实体类属性就可以改变。默认为false；
+rootClass: 设置所有实体类的基类，
+                           如果设置，需要使用类的全限定名称；
+                           并且如果MBG能够加载rootClass，那么MBG不会覆盖和父类中完全匹配的属性，匹配规则：
+    属性名完全相同、属性类型相同、属性有getter方法、属性有setter方法；（四个规则完全匹配）
+trimStrings:是否对数据库查询结果进行trim操作，如果设置为true就会生成类似这样
+    public void setUsername(String username) {this.username = username == null ? null : username.trim();}的setter方法。默认值为false；
+
+】
+
 7、<sqlMapGenerator> (0个或1个)
+【
+targetPackage:生成实体类存放的包名，一般就是放在该包下。实际还会受到其他配置的影响(<table>中会提到)；（targetPackage="com.mfzhang.mayi.datasource.mapper"）
+targetProject:指定目标项目路径，可以是绝对路径或相对路径（如 targetProject="src/main/resources" || targetProject="D:\work\proj\git\mayi\mayi-datasource-service\src\main\resources"）；
+
+元素支持<property>子元素，只有一个可以配置的属性：
+enableSubPackages:如果true，MBG会根据catalog和schema来生成子包。如果false就会直接用targetPackage属性。默认为false；
+
+】
+
 8、<javaClientGenerator> (0个或1个)
+【
+生成Mapper接口，如果不配置该元素，就不会生成Mapper接口；
+
+1. type属性：必选，
+该属性提供了以下预定的代码生成器，首先根据<context>的targetRuntime分成三类：
+MyBatis3:
+    ANNOTATEDMAPPER:基于注解的Mapper接口，不会有对应的XML映射文件
+    MIXEDMAPPER:XML和注解的混合形式，(上面这种情况中的)SqlProvider注解方法会被XML替代。
+    XMLMAPPER:所有的方法都在XML中，接口调用依赖XML文件。
+MyBatis3Simple:
+    ANNOTATEDMAPPER:基于注解的Mapper接口，不会有对应的XML映射文件
+    XMLMAPPER:所有的方法都在XML中，接口调用依赖XML文件。
+Ibatis2Java2或**Ibatis2Java5**:
+    IBATIS:生成的对象符合iBATIS的DAO框架（不建议使用）。
+    GENERIC-CI:生成的对象将只依赖于SqlMapClient，通过构造方法注入。
+    GENERIC-SI:生成的对象将只依赖于SqlMapClient，通过setter方法注入。
+    SPRING:生成的对象符合Spring的DAO接口
+2. targetPackage:生成实体类存放的包名，一般就是放在该包下。实际还会受到其他配置的影响(<table>中会提到)；
+3. targetProject:指定目标项目路径，可以是绝对路径或相对路径（如 targetProject="src/main/java"）；
+4. implementationPackage:如果指定了该属性，实现类就会生成在这个包中；
+
+该元素支持<property>子元素设置的属性：
+enableSubPackages
+exampleMethodVisibility
+methodNameCalculator
+rootInterface
+useLegacyBuilder
+
+】
+
 9、<table> (1个或多个)
+【
+该元素用来配置要通过内省的表。只有配置的才会生成实体类和其他文件；
+
+tableName：必选，指定要生成的表名，可以使用SQL通配符匹配多个表；例如要生成全部的表，可以按如下配置<table tableName="%" />；
+schema: 可选，数据库的schema,可以使用SQL通配符匹配。如果设置了该值，生成SQL的表名会变成如schema.tableName的形式；
+catalog: 可选，数据库的catalog，如果设置了该值，生成SQL的表名会变成如catalog.tableName的形式；
+domainObjectName:生成对象的基本名称。如果没有指定，MBG会自动根据表名来生成名称；
+enableXXX:XXX代表多种SQL方法，该属性用来指定是否生成对应的XXX语句；
+delimitIdentifiers:是否给标识符增加**分隔符**。默认false。当catalog,schema或tableName中包含空白时，默认为true；
+delimitAllColumns:是否对所有列添加**分隔符**。默认false；
+escapeWildcards:这个属性表示当查询列，是否对schema和表名中的SQL通配符 ('_' and '%') 进行转义。 
+                     对于某些驱动当schema或表名中包含SQL通配符时（例如，一个表名是MY_TABLE，有一些驱动需要将下划线进行转义）是必须的。默认值是false；
+
+】
    -->
   <context id="mysqlDatasource" defaultModelType="flat">
     <!-- 配置开始和结束分隔符 -->
@@ -83,36 +180,41 @@
     	<property name="suppressAllComments" value="true"/>
     	<property name="suppressDate" value="true"/>
     </commentGenerator>
-  
-    <jdbcConnection driverClass="COM.ibm.db2.jdbc.app.DB2Driver"
-        connectionURL="jdbc:db2:TEST"
-        userId="db2admin"
-        password="db2admin">
+    
+    <!-- 配置数据库连接 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://db201.dev.rs.com:3306/db_digital"
+        userId="dev"
+        password="dev123">
     </jdbcConnection>
 
-    <javaTypeResolver >
+    <!-- 默认forceBigDecimals为false，可不配置 -->
+    <!-- <javaTypeResolver>
       <property name="forceBigDecimals" value="false" />
-    </javaTypeResolver>
+    </javaTypeResolver> -->
 
-    <javaModelGenerator targetPackage="test.model" targetProject="\MBGTestProject\src">
-      <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
+    <!-- 配置Model类的生成 -->
+    <javaModelGenerator targetPackage="com.mfzhang.mayi.datasource.domain" targetProject="D:\work\proj\git\mayi\mayi-datasource-api\src\main\java">
+      <!-- <property name="enableSubPackages" value="true" /> -->
+        <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
-    <sqlMapGenerator targetPackage="test.xml"  targetProject="\MBGTestProject\src">
-      <property name="enableSubPackages" value="true" />
+    <!-- 配置xml文件生成位置等 -->
+    <sqlMapGenerator targetPackage="com.mfzhang.mayi.datasource.mapper"  targetProject="src\main\resources">
+        <!-- <property name="enableSubPackages" value="true" /> -->
     </sqlMapGenerator>
 
-    <javaClientGenerator type="XMLMAPPER" targetPackage="test.dao"  targetProject="\MBGTestProject\src">
-      <property name="enableSubPackages" value="true" />
+    <!-- 配置生成mapper接口 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.mfzhang.mayi.datasource.mapper"  targetProject="src\main\java">
+        <!-- <property name="enableSubPackages" value="true" /> -->
     </javaClientGenerator>
 
-    <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
-      <property name="useActualColumnNames" value="true"/>
-      <generatedKey column="ID" sqlStatement="DB2" identity="true" />
-      <columnOverride column="DATE_FIELD" property="startDate" />
-      <ignoreColumn column="FRED" />
-      <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+    <table tableName="oms_shop_info" schema="db_digital">
+      <property name="useActualColumnNames" value="false"/> <!-- 默认值false，表示采用驼峰标识给属性命名 -->
+      <generatedKey column="id" sqlStatement="JDBC" identity="true" />
+      <columnOverride column="market_id_uuid" property="marketUuid" />
+      <columnOverride column="business_type" jdbcType="VARCHAR" javaType="java.lang.Integer" />
+      <ignoreColumn column="create_operator" />
     </table>
 
   </context>

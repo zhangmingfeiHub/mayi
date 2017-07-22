@@ -51,6 +51,13 @@
 	
 	<dependencyManagement>
 		<dependencies>
+			<!-- 引入自己工程内的jar -->
+			<dependency>
+			    <groupId>${project.groupId}</groupId>
+			    <artifactId>mayi-datasource-api</artifactId>
+			    <version>${project.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			
 			<!-- spring jar -->
 			<dependency>
 			    <groupId>org.springframework</groupId>

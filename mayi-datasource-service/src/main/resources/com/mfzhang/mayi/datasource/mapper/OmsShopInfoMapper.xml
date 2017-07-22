@@ -1,0 +1,3083 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mfzhang.mayi.datasource.mapper.OmsShopInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status)
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status)
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="online_status" jdbcType="INTEGER" property="onlineStatus" />
+    <result column="deal_status" jdbcType="INTEGER" property="dealStatus" />
+    <result column="contacts_name" jdbcType="VARCHAR" property="contactsName" />
+    <result column="contacts_phone" jdbcType="VARCHAR" property="contactsPhone" />
+    <result column="market_booth_number" jdbcType="VARCHAR" property="marketBoothNumber" />
+    <result column="market_floor" jdbcType="VARCHAR" property="marketFloor" />
+    <result column="shop_tel" jdbcType="VARCHAR" property="shopTel" />
+    <result column="sales_start_time" jdbcType="TIMESTAMP" property="salesStartTime" />
+    <result column="sales_end_time" jdbcType="TIMESTAMP" property="salesEndTime" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="shop_introduction" jdbcType="VARCHAR" property="shopIntroduction" />
+    <result column="supplier_info" jdbcType="VARCHAR" property="supplierInfo" />
+    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="job_update_time" jdbcType="TIMESTAMP" property="jobUpdateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status, online_status, deal_status, 
+    contacts_name, contacts_phone, market_booth_number, market_floor, shop_tel, sales_start_time, 
+    sales_end_time, shop_name, shop_introduction, supplier_info, show_status, update_date, 
+    job_update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status, online_status, deal_status, 
+      contacts_name, contacts_phone, market_booth_number, 
+      market_floor, shop_tel, sales_start_time, 
+      sales_end_time, shop_name, shop_introduction, 
+      supplier_info, show_status, update_date, 
+      job_update_time)
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{onlineStatus,jdbcType=INTEGER}, #{dealStatus,jdbcType=INTEGER}, 
+      #{contactsName,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{marketBoothNumber,jdbcType=VARCHAR}, 
+      #{marketFloor,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, #{salesStartTime,jdbcType=TIMESTAMP}, 
+      #{salesEndTime,jdbcType=TIMESTAMP}, #{shopName,jdbcType=VARCHAR}, #{shopIntroduction,jdbcType=VARCHAR}, 
+      #{supplierInfo,jdbcType=VARCHAR}, #{showStatus,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{jobUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="onlineStatus != null">
+        online_status,
+      </if>
+      <if test="dealStatus != null">
+        deal_status,
+      </if>
+      <if test="contactsName != null">
+        contacts_name,
+      </if>
+      <if test="contactsPhone != null">
+        contacts_phone,
+      </if>
+      <if test="marketBoothNumber != null">
+        market_booth_number,
+      </if>
+      <if test="marketFloor != null">
+        market_floor,
+      </if>
+      <if test="shopTel != null">
+        shop_tel,
+      </if>
+      <if test="salesStartTime != null">
+        sales_start_time,
+      </if>
+      <if test="salesEndTime != null">
+        sales_end_time,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="shopIntroduction != null">
+        shop_introduction,
+      </if>
+      <if test="supplierInfo != null">
+        supplier_info,
+      </if>
+      <if test="showStatus != null">
+        show_status,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="jobUpdateTime != null">
+        job_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="onlineStatus != null">
+        #{onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dealStatus != null">
+        #{dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contactsName != null">
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null">
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="marketBoothNumber != null">
+        #{marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketFloor != null">
+        #{marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="shopTel != null">
+        #{shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="salesStartTime != null">
+        #{salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesEndTime != null">
+        #{salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopIntroduction != null">
+        #{shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierInfo != null">
+        #{supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="showStatus != null">
+        #{showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobUpdateTime != null">
+        #{jobUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineStatus != null">
+        online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealStatus != null">
+        deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactsName != null">
+        contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsPhone != null">
+        contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketBoothNumber != null">
+        market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketFloor != null">
+        market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopTel != null">
+        shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesStartTime != null">
+        sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salesEndTime != null">
+        sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shopName != null">
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopIntroduction != null">
+        shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierInfo != null">
+        supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showStatus != null">
+        show_status = #{record.showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jobUpdateTime != null">
+        job_update_time = #{record.jobUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      show_status = #{record.showStatus,jdbcType=INTEGER},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      job_update_time = #{record.jobUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="online_status" jdbcType="INTEGER" property="onlineStatus" />
+    <result column="deal_status" jdbcType="INTEGER" property="dealStatus" />
+    <result column="contacts_name" jdbcType="VARCHAR" property="contactsName" />
+    <result column="contacts_phone" jdbcType="VARCHAR" property="contactsPhone" />
+    <result column="market_booth_number" jdbcType="VARCHAR" property="marketBoothNumber" />
+    <result column="market_floor" jdbcType="VARCHAR" property="marketFloor" />
+    <result column="shop_tel" jdbcType="VARCHAR" property="shopTel" />
+    <result column="sales_start_time" jdbcType="TIMESTAMP" property="salesStartTime" />
+    <result column="sales_end_time" jdbcType="TIMESTAMP" property="salesEndTime" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="shop_introduction" jdbcType="VARCHAR" property="shopIntroduction" />
+    <result column="supplier_info" jdbcType="VARCHAR" property="supplierInfo" />
+    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="manu_shop" jdbcType="INTEGER" property="manuShop" />
+    <result column="shop_from" jdbcType="INTEGER" property="shopFrom" />
+    <result column="shop_type" jdbcType="INTEGER" property="shopType" />
+    <result column="is_cert" jdbcType="VARCHAR" property="isCert" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="is_shopping" jdbcType="INTEGER" property="isShopping" />
+    <result column="is_get" jdbcType="TINYINT" property="isGet" />
+    <result column="out_shop_id" jdbcType="VARCHAR" property="outShopId" />
+    <result column="update_operator" jdbcType="VARCHAR" property="updateOperator" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status, online_status, deal_status, 
+    contacts_name, contacts_phone, market_booth_number, market_floor, shop_tel, sales_start_time, 
+    sales_end_time, shop_name, shop_introduction, supplier_info, show_status, manu_shop, 
+    shop_from, shop_type, is_cert, business_type, is_shopping, is_get, out_shop_id, update_operator, 
+    update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status, online_status, deal_status, 
+      contacts_name, contacts_phone, market_booth_number, 
+      market_floor, shop_tel, sales_start_time, 
+      sales_end_time, shop_name, shop_introduction, 
+      supplier_info, show_status, manu_shop, 
+      shop_from, shop_type, is_cert, 
+      business_type, is_shopping, is_get, 
+      out_shop_id, update_operator, update_date
+      )
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{onlineStatus,jdbcType=INTEGER}, #{dealStatus,jdbcType=INTEGER}, 
+      #{contactsName,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{marketBoothNumber,jdbcType=VARCHAR}, 
+      #{marketFloor,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, #{salesStartTime,jdbcType=TIMESTAMP}, 
+      #{salesEndTime,jdbcType=TIMESTAMP}, #{shopName,jdbcType=VARCHAR}, #{shopIntroduction,jdbcType=VARCHAR}, 
+      #{supplierInfo,jdbcType=VARCHAR}, #{showStatus,jdbcType=INTEGER}, #{manuShop,jdbcType=INTEGER}, 
+      #{shopFrom,jdbcType=INTEGER}, #{shopType,jdbcType=INTEGER}, #{isCert,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{isShopping,jdbcType=INTEGER}, #{isGet,jdbcType=TINYINT}, 
+      #{outShopId,jdbcType=VARCHAR}, #{updateOperator,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="onlineStatus != null">
+        online_status,
+      </if>
+      <if test="dealStatus != null">
+        deal_status,
+      </if>
+      <if test="contactsName != null">
+        contacts_name,
+      </if>
+      <if test="contactsPhone != null">
+        contacts_phone,
+      </if>
+      <if test="marketBoothNumber != null">
+        market_booth_number,
+      </if>
+      <if test="marketFloor != null">
+        market_floor,
+      </if>
+      <if test="shopTel != null">
+        shop_tel,
+      </if>
+      <if test="salesStartTime != null">
+        sales_start_time,
+      </if>
+      <if test="salesEndTime != null">
+        sales_end_time,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="shopIntroduction != null">
+        shop_introduction,
+      </if>
+      <if test="supplierInfo != null">
+        supplier_info,
+      </if>
+      <if test="showStatus != null">
+        show_status,
+      </if>
+      <if test="manuShop != null">
+        manu_shop,
+      </if>
+      <if test="shopFrom != null">
+        shop_from,
+      </if>
+      <if test="shopType != null">
+        shop_type,
+      </if>
+      <if test="isCert != null">
+        is_cert,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="isShopping != null">
+        is_shopping,
+      </if>
+      <if test="isGet != null">
+        is_get,
+      </if>
+      <if test="outShopId != null">
+        out_shop_id,
+      </if>
+      <if test="updateOperator != null">
+        update_operator,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="onlineStatus != null">
+        #{onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dealStatus != null">
+        #{dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contactsName != null">
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null">
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="marketBoothNumber != null">
+        #{marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketFloor != null">
+        #{marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="shopTel != null">
+        #{shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="salesStartTime != null">
+        #{salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesEndTime != null">
+        #{salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopIntroduction != null">
+        #{shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierInfo != null">
+        #{supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="showStatus != null">
+        #{showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="manuShop != null">
+        #{manuShop,jdbcType=INTEGER},
+      </if>
+      <if test="shopFrom != null">
+        #{shopFrom,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null">
+        #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="isCert != null">
+        #{isCert,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="isShopping != null">
+        #{isShopping,jdbcType=INTEGER},
+      </if>
+      <if test="isGet != null">
+        #{isGet,jdbcType=TINYINT},
+      </if>
+      <if test="outShopId != null">
+        #{outShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperator != null">
+        #{updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineStatus != null">
+        online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealStatus != null">
+        deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactsName != null">
+        contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsPhone != null">
+        contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketBoothNumber != null">
+        market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketFloor != null">
+        market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopTel != null">
+        shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesStartTime != null">
+        sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salesEndTime != null">
+        sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shopName != null">
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopIntroduction != null">
+        shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierInfo != null">
+        supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showStatus != null">
+        show_status = #{record.showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.manuShop != null">
+        manu_shop = #{record.manuShop,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopFrom != null">
+        shop_from = #{record.shopFrom,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopType != null">
+        shop_type = #{record.shopType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCert != null">
+        is_cert = #{record.isCert,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null">
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShopping != null">
+        is_shopping = #{record.isShopping,jdbcType=INTEGER},
+      </if>
+      <if test="record.isGet != null">
+        is_get = #{record.isGet,jdbcType=TINYINT},
+      </if>
+      <if test="record.outShopId != null">
+        out_shop_id = #{record.outShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateOperator != null">
+        update_operator = #{record.updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      show_status = #{record.showStatus,jdbcType=INTEGER},
+      manu_shop = #{record.manuShop,jdbcType=INTEGER},
+      shop_from = #{record.shopFrom,jdbcType=INTEGER},
+      shop_type = #{record.shopType,jdbcType=INTEGER},
+      is_cert = #{record.isCert,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      is_shopping = #{record.isShopping,jdbcType=INTEGER},
+      is_get = #{record.isGet,jdbcType=TINYINT},
+      out_shop_id = #{record.outShopId,jdbcType=VARCHAR},
+      update_operator = #{record.updateOperator,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status)
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status)
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="online_status" jdbcType="INTEGER" property="onlineStatus" />
+    <result column="deal_status" jdbcType="INTEGER" property="dealStatus" />
+    <result column="contacts_name" jdbcType="VARCHAR" property="contactsName" />
+    <result column="contacts_phone" jdbcType="VARCHAR" property="contactsPhone" />
+    <result column="market_booth_number" jdbcType="VARCHAR" property="marketBoothNumber" />
+    <result column="market_floor" jdbcType="VARCHAR" property="marketFloor" />
+    <result column="shop_tel" jdbcType="VARCHAR" property="shopTel" />
+    <result column="sales_start_time" jdbcType="TIMESTAMP" property="salesStartTime" />
+    <result column="sales_end_time" jdbcType="TIMESTAMP" property="salesEndTime" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="shop_introduction" jdbcType="VARCHAR" property="shopIntroduction" />
+    <result column="supplier_info" jdbcType="VARCHAR" property="supplierInfo" />
+    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="job_update_time" jdbcType="TIMESTAMP" property="jobUpdateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status, online_status, deal_status, 
+    contacts_name, contacts_phone, market_booth_number, market_floor, shop_tel, sales_start_time, 
+    sales_end_time, shop_name, shop_introduction, supplier_info, show_status, update_date, 
+    job_update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status, online_status, deal_status, 
+      contacts_name, contacts_phone, market_booth_number, 
+      market_floor, shop_tel, sales_start_time, 
+      sales_end_time, shop_name, shop_introduction, 
+      supplier_info, show_status, update_date, 
+      job_update_time)
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{onlineStatus,jdbcType=INTEGER}, #{dealStatus,jdbcType=INTEGER}, 
+      #{contactsName,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{marketBoothNumber,jdbcType=VARCHAR}, 
+      #{marketFloor,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, #{salesStartTime,jdbcType=TIMESTAMP}, 
+      #{salesEndTime,jdbcType=TIMESTAMP}, #{shopName,jdbcType=VARCHAR}, #{shopIntroduction,jdbcType=VARCHAR}, 
+      #{supplierInfo,jdbcType=VARCHAR}, #{showStatus,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{jobUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="onlineStatus != null">
+        online_status,
+      </if>
+      <if test="dealStatus != null">
+        deal_status,
+      </if>
+      <if test="contactsName != null">
+        contacts_name,
+      </if>
+      <if test="contactsPhone != null">
+        contacts_phone,
+      </if>
+      <if test="marketBoothNumber != null">
+        market_booth_number,
+      </if>
+      <if test="marketFloor != null">
+        market_floor,
+      </if>
+      <if test="shopTel != null">
+        shop_tel,
+      </if>
+      <if test="salesStartTime != null">
+        sales_start_time,
+      </if>
+      <if test="salesEndTime != null">
+        sales_end_time,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="shopIntroduction != null">
+        shop_introduction,
+      </if>
+      <if test="supplierInfo != null">
+        supplier_info,
+      </if>
+      <if test="showStatus != null">
+        show_status,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="jobUpdateTime != null">
+        job_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="onlineStatus != null">
+        #{onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dealStatus != null">
+        #{dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contactsName != null">
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null">
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="marketBoothNumber != null">
+        #{marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketFloor != null">
+        #{marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="shopTel != null">
+        #{shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="salesStartTime != null">
+        #{salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesEndTime != null">
+        #{salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopIntroduction != null">
+        #{shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierInfo != null">
+        #{supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="showStatus != null">
+        #{showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobUpdateTime != null">
+        #{jobUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineStatus != null">
+        online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealStatus != null">
+        deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactsName != null">
+        contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsPhone != null">
+        contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketBoothNumber != null">
+        market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketFloor != null">
+        market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopTel != null">
+        shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesStartTime != null">
+        sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salesEndTime != null">
+        sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shopName != null">
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopIntroduction != null">
+        shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierInfo != null">
+        supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showStatus != null">
+        show_status = #{record.showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jobUpdateTime != null">
+        job_update_time = #{record.jobUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      show_status = #{record.showStatus,jdbcType=INTEGER},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      job_update_time = #{record.jobUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsShopInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_number" jdbcType="VARCHAR" property="shopNumber" />
+    <result column="market_id" jdbcType="INTEGER" property="marketId" />
+    <result column="market_id_uuid" jdbcType="INTEGER" property="marketUuid" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="dealer_id" jdbcType="INTEGER" property="dealerId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="series_name" jdbcType="VARCHAR" property="seriesName" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="online_status" jdbcType="INTEGER" property="onlineStatus" />
+    <result column="deal_status" jdbcType="INTEGER" property="dealStatus" />
+    <result column="contacts_name" jdbcType="VARCHAR" property="contactsName" />
+    <result column="contacts_phone" jdbcType="VARCHAR" property="contactsPhone" />
+    <result column="market_booth_number" jdbcType="VARCHAR" property="marketBoothNumber" />
+    <result column="market_floor" jdbcType="VARCHAR" property="marketFloor" />
+    <result column="shop_tel" jdbcType="VARCHAR" property="shopTel" />
+    <result column="sales_start_time" jdbcType="TIMESTAMP" property="salesStartTime" />
+    <result column="sales_end_time" jdbcType="TIMESTAMP" property="salesEndTime" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="shop_introduction" jdbcType="VARCHAR" property="shopIntroduction" />
+    <result column="supplier_info" jdbcType="VARCHAR" property="supplierInfo" />
+    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="manu_shop" jdbcType="INTEGER" property="manuShop" />
+    <result column="shop_from" jdbcType="INTEGER" property="shopFrom" />
+    <result column="shop_type" jdbcType="INTEGER" property="shopType" />
+    <result column="is_cert" jdbcType="VARCHAR" property="isCert" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="is_shopping" jdbcType="INTEGER" property="isShopping" />
+    <result column="is_get" jdbcType="TINYINT" property="isGet" />
+    <result column="out_shop_id" jdbcType="VARCHAR" property="outShopId" />
+    <result column="update_operator" jdbcType="VARCHAR" property="updateOperator" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, shop_number, market_id, market_id_uuid, market_name, company_id, dealer_id, brand_id, 
+    brand_name, series_id, series_name, is_del, create_date, status, online_status, deal_status, 
+    contacts_name, contacts_phone, market_booth_number, market_floor, shop_tel, sales_start_time, 
+    sales_end_time, shop_name, shop_introduction, supplier_info, show_status, manu_shop, 
+    shop_from, shop_type, is_cert, business_type, is_shopping, is_get, out_shop_id, update_operator, 
+    update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample">
+    delete from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info (shop_number, market_id, market_id_uuid, 
+      market_name, company_id, dealer_id, 
+      brand_id, brand_name, series_id, 
+      series_name, is_del, create_date, 
+      status, online_status, deal_status, 
+      contacts_name, contacts_phone, market_booth_number, 
+      market_floor, shop_tel, sales_start_time, 
+      sales_end_time, shop_name, shop_introduction, 
+      supplier_info, show_status, manu_shop, 
+      shop_from, shop_type, is_cert, 
+      business_type, is_shopping, is_get, 
+      out_shop_id, update_operator, update_date
+      )
+    values (#{shopNumber,jdbcType=VARCHAR}, #{marketId,jdbcType=INTEGER}, #{marketUuid,jdbcType=INTEGER}, 
+      #{marketName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{seriesId,jdbcType=INTEGER}, 
+      #{seriesName,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{onlineStatus,jdbcType=INTEGER}, #{dealStatus,jdbcType=INTEGER}, 
+      #{contactsName,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{marketBoothNumber,jdbcType=VARCHAR}, 
+      #{marketFloor,jdbcType=VARCHAR}, #{shopTel,jdbcType=VARCHAR}, #{salesStartTime,jdbcType=TIMESTAMP}, 
+      #{salesEndTime,jdbcType=TIMESTAMP}, #{shopName,jdbcType=VARCHAR}, #{shopIntroduction,jdbcType=VARCHAR}, 
+      #{supplierInfo,jdbcType=VARCHAR}, #{showStatus,jdbcType=INTEGER}, #{manuShop,jdbcType=INTEGER}, 
+      #{shopFrom,jdbcType=INTEGER}, #{shopType,jdbcType=INTEGER}, #{isCert,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{isShopping,jdbcType=INTEGER}, #{isGet,jdbcType=TINYINT}, 
+      #{outShopId,jdbcType=VARCHAR}, #{updateOperator,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfo" useGeneratedKeys="true">
+    insert into oms_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        shop_number,
+      </if>
+      <if test="marketId != null">
+        market_id,
+      </if>
+      <if test="marketUuid != null">
+        market_id_uuid,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="seriesName != null">
+        series_name,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="onlineStatus != null">
+        online_status,
+      </if>
+      <if test="dealStatus != null">
+        deal_status,
+      </if>
+      <if test="contactsName != null">
+        contacts_name,
+      </if>
+      <if test="contactsPhone != null">
+        contacts_phone,
+      </if>
+      <if test="marketBoothNumber != null">
+        market_booth_number,
+      </if>
+      <if test="marketFloor != null">
+        market_floor,
+      </if>
+      <if test="shopTel != null">
+        shop_tel,
+      </if>
+      <if test="salesStartTime != null">
+        sales_start_time,
+      </if>
+      <if test="salesEndTime != null">
+        sales_end_time,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="shopIntroduction != null">
+        shop_introduction,
+      </if>
+      <if test="supplierInfo != null">
+        supplier_info,
+      </if>
+      <if test="showStatus != null">
+        show_status,
+      </if>
+      <if test="manuShop != null">
+        manu_shop,
+      </if>
+      <if test="shopFrom != null">
+        shop_from,
+      </if>
+      <if test="shopType != null">
+        shop_type,
+      </if>
+      <if test="isCert != null">
+        is_cert,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="isShopping != null">
+        is_shopping,
+      </if>
+      <if test="isGet != null">
+        is_get,
+      </if>
+      <if test="outShopId != null">
+        out_shop_id,
+      </if>
+      <if test="updateOperator != null">
+        update_operator,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopNumber != null">
+        #{shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null">
+        #{marketId,jdbcType=INTEGER},
+      </if>
+      <if test="marketUuid != null">
+        #{marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesName != null">
+        #{seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="onlineStatus != null">
+        #{onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dealStatus != null">
+        #{dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contactsName != null">
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null">
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="marketBoothNumber != null">
+        #{marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketFloor != null">
+        #{marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="shopTel != null">
+        #{shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="salesStartTime != null">
+        #{salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesEndTime != null">
+        #{salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopIntroduction != null">
+        #{shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierInfo != null">
+        #{supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="showStatus != null">
+        #{showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="manuShop != null">
+        #{manuShop,jdbcType=INTEGER},
+      </if>
+      <if test="shopFrom != null">
+        #{shopFrom,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null">
+        #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="isCert != null">
+        #{isCert,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="isShopping != null">
+        #{isShopping,jdbcType=INTEGER},
+      </if>
+      <if test="isGet != null">
+        #{isGet,jdbcType=TINYINT},
+      </if>
+      <if test="outShopId != null">
+        #{outShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperator != null">
+        #{updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsShopInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_shop_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopNumber != null">
+        shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketId != null">
+        market_id = #{record.marketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketUuid != null">
+        market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null">
+        dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null">
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null">
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesName != null">
+        series_name = #{record.seriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineStatus != null">
+        online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealStatus != null">
+        deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactsName != null">
+        contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsPhone != null">
+        contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketBoothNumber != null">
+        market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketFloor != null">
+        market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopTel != null">
+        shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesStartTime != null">
+        sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salesEndTime != null">
+        sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shopName != null">
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopIntroduction != null">
+        shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierInfo != null">
+        supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showStatus != null">
+        show_status = #{record.showStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.manuShop != null">
+        manu_shop = #{record.manuShop,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopFrom != null">
+        shop_from = #{record.shopFrom,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopType != null">
+        shop_type = #{record.shopType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCert != null">
+        is_cert = #{record.isCert,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null">
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShopping != null">
+        is_shopping = #{record.isShopping,jdbcType=INTEGER},
+      </if>
+      <if test="record.isGet != null">
+        is_get = #{record.isGet,jdbcType=TINYINT},
+      </if>
+      <if test="record.outShopId != null">
+        out_shop_id = #{record.outShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateOperator != null">
+        update_operator = #{record.updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_shop_info
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_number = #{record.shopNumber,jdbcType=VARCHAR},
+      market_id = #{record.marketId,jdbcType=INTEGER},
+      market_id_uuid = #{record.marketUuid,jdbcType=INTEGER},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      series_name = #{record.seriesName,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      online_status = #{record.onlineStatus,jdbcType=INTEGER},
+      deal_status = #{record.dealStatus,jdbcType=INTEGER},
+      contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      market_booth_number = #{record.marketBoothNumber,jdbcType=VARCHAR},
+      market_floor = #{record.marketFloor,jdbcType=VARCHAR},
+      shop_tel = #{record.shopTel,jdbcType=VARCHAR},
+      sales_start_time = #{record.salesStartTime,jdbcType=TIMESTAMP},
+      sales_end_time = #{record.salesEndTime,jdbcType=TIMESTAMP},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      shop_introduction = #{record.shopIntroduction,jdbcType=VARCHAR},
+      supplier_info = #{record.supplierInfo,jdbcType=VARCHAR},
+      show_status = #{record.showStatus,jdbcType=INTEGER},
+      manu_shop = #{record.manuShop,jdbcType=INTEGER},
+      shop_from = #{record.shopFrom,jdbcType=INTEGER},
+      shop_type = #{record.shopType,jdbcType=INTEGER},
+      is_cert = #{record.isCert,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      is_shopping = #{record.isShopping,jdbcType=INTEGER},
+      is_get = #{record.isGet,jdbcType=TINYINT},
+      out_shop_id = #{record.outShopId,jdbcType=VARCHAR},
+      update_operator = #{record.updateOperator,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+    <select id="getShopInfoById" parameterType="int" resultType="OmsShopInfo">
+    	SELECT t.id,
+    	       t.brand_id brandId,
+    	       t.brand_name brandName 
+    	  FROM oms_shop_info t 
+    	 WHERE t.id = 1
+    </select>
+  
+</mapper>

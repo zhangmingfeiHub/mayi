@@ -15,6 +15,11 @@
 	<description>项目数据源模块，主要用于测试多数据源配置</description>
 	
 	<dependencies>
+		<!-- 引入自己工程内的jar -->
+		<dependency>
+		    <groupId>${project.groupId}</groupId>
+		    <artifactId>mayi-datasource-api</artifactId>
+		</dependency>
 		<!-- spring jar -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
