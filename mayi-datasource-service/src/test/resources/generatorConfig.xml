@@ -16,7 +16,7 @@
   resource: 相对路径，指定相对classpath下的属性文件；
   url: 绝对路径，指定系统上的特定位置属性文件；
    -->
-  <properties resource="db.properties" />
+  <!-- <properties resource="db.properties" /> -->
   
   <!-- 
   将MBG运行时需要用到的jar添加到classpath下；
@@ -182,7 +182,7 @@ escapeWildcards:这个属性表示当查询列，是否对schema和表名中的S
     </commentGenerator>
     
     <!-- 配置数据库连接 -->
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+    <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
         connectionURL="jdbc:mysql://db201.dev.rs.com:3306/db_digital"
         userId="dev"
         password="dev123">
