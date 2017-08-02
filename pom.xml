@@ -37,14 +37,26 @@
 			<properties>
 				<env>dev</env>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 		<profile>
 			<id>uat</id>
 			<properties>
 				<env>uat</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>home</id>
+			<properties>
+				<env>home</env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>company</id>
+			<properties>
+				<env>company</env>
 			</properties>
 		</profile>
 	</profiles>

@@ -26,7 +26,9 @@ public class MBG {
 			List<String> warnings = new ArrayList<String>();
 			boolean overwrite = true;
 			// File configFile = new File("D:\\work\\proj\\git\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig.xml");
-			File configFile = new File("D:\\work\\proj\\git\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig2.xml");
+			// String file = "D:\\work\\proj\\git\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig3.xml";
+			String file = "E:\\mingfei.zhang\\work\\git repo\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig3.xml";
+			File configFile = new File(file);
 			ConfigurationParser cp = new ConfigurationParser(warnings);
 			Configuration config = cp.parseConfiguration(configFile);
 			DefaultShellCallback callback = new DefaultShellCallback(overwrite);

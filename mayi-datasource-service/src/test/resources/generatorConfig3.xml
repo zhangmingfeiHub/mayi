@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<properties resource="db.properties" />
+	
+	<!-- <classPathEntry location=""/> -->
+
+	<context id="DevSchema" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		
+		<!-- 去除自动生成的注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="${db.mysql.driver}"
+		                connectionURL="${db.mysql.url3}" 
+		                userId="${db.mysql.username3}" 
+		                password="${db.mysql.password3}">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.mfzhang.mayi.datasource.domain"
+			targetProject="..\mayi-datasource-api\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<sqlMapGenerator targetPackage="com.mfzhang.mayi.datasource.mapper"
+			targetProject="src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.mfzhang.mayi.datasource.mapper"
+			 targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="mdm_mall">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+
+	</context>
+	
+    <!-- <context id="mdmFloor" 
+             defaultModelType="flat"
+             targetRuntime="MyBatis3">
+        
+        <property name="tableName" value="mdm_floor"/>
+        
+    </context> -->
+	
+</generatorConfiguration>
