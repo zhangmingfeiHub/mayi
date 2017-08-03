@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mfzhang.mayi.datasource.mapper.MdmDealerMapper">
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    <result column="md_guid" jdbcType="VARCHAR" property="mdGuid" />
+    <result column="mdm_id" jdbcType="VARCHAR" property="mdmId" />
+    <result column="dealer_code" jdbcType="VARCHAR" property="dealerCode" />
+    <result column="sap_number" jdbcType="VARCHAR" property="sapNumber" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="business_nature" jdbcType="VARCHAR" property="businessNature" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="is_agent" jdbcType="VARCHAR" property="isAgent" />
+    <result column="is_merge_certificate" jdbcType="VARCHAR" property="isMergeCertificate" />
+    <result column="c_id" jdbcType="VARCHAR" property="cId" />
+    <result column="o_id" jdbcType="VARCHAR" property="oId" />
+    <result column="t_id" jdbcType="VARCHAR" property="tId" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="r_addr" jdbcType="VARCHAR" property="rAddr" />
+    <result column="corpo_name" jdbcType="VARCHAR" property="corpoName" />
+    <result column="delete" jdbcType="VARCHAR" property="delete" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    md_guid, mdm_id, dealer_code, sap_number, business_name, business_nature, business_type, 
+    is_agent, is_merge_certificate, c_id, o_id, t_id, p_id, province, city, area, r_addr, 
+    corpo_name, delete, modify_time
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample">
+    delete from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    insert into mdm_dealer (md_guid, mdm_id, dealer_code, 
+      sap_number, business_name, business_nature, 
+      business_type, is_agent, is_merge_certificate, 
+      c_id, o_id, t_id, p_id, 
+      province, city, area, 
+      r_addr, corpo_name, delete, 
+      modify_time)
+    values (#{mdGuid,jdbcType=VARCHAR}, #{mdmId,jdbcType=VARCHAR}, #{dealerCode,jdbcType=VARCHAR}, 
+      #{sapNumber,jdbcType=VARCHAR}, #{businessName,jdbcType=VARCHAR}, #{businessNature,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{isAgent,jdbcType=VARCHAR}, #{isMergeCertificate,jdbcType=VARCHAR}, 
+      #{cId,jdbcType=VARCHAR}, #{oId,jdbcType=VARCHAR}, #{tId,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{rAddr,jdbcType=VARCHAR}, #{corpoName,jdbcType=VARCHAR}, #{delete,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    insert into mdm_dealer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        md_guid,
+      </if>
+      <if test="mdmId != null">
+        mdm_id,
+      </if>
+      <if test="dealerCode != null">
+        dealer_code,
+      </if>
+      <if test="sapNumber != null">
+        sap_number,
+      </if>
+      <if test="businessName != null">
+        business_name,
+      </if>
+      <if test="businessNature != null">
+        business_nature,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="isAgent != null">
+        is_agent,
+      </if>
+      <if test="isMergeCertificate != null">
+        is_merge_certificate,
+      </if>
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="rAddr != null">
+        r_addr,
+      </if>
+      <if test="corpoName != null">
+        corpo_name,
+      </if>
+      <if test="delete != null">
+        delete,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        #{mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdmId != null">
+        #{mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealerCode != null">
+        #{dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sapNumber != null">
+        #{sapNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="businessName != null">
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessNature != null">
+        #{businessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null">
+        #{isAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="isMergeCertificate != null">
+        #{isMergeCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="oId != null">
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="rAddr != null">
+        #{rAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="corpoName != null">
+        #{corpoName,jdbcType=VARCHAR},
+      </if>
+      <if test="delete != null">
+        #{delete,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample" resultType="java.lang.Long">
+    select count(*) from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mdm_dealer
+    <set>
+      <if test="record.mdGuid != null">
+        md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mdmId != null">
+        mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealerCode != null">
+        dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sapNumber != null">
+        sap_number = #{record.sapNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessName != null">
+        business_name = #{record.businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessNature != null">
+        business_nature = #{record.businessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null">
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAgent != null">
+        is_agent = #{record.isAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMergeCertificate != null">
+        is_merge_certificate = #{record.isMergeCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oId != null">
+        o_id = #{record.oId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rAddr != null">
+        r_addr = #{record.rAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpoName != null">
+        corpo_name = #{record.corpoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delete != null">
+        delete = #{record.delete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null">
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mdm_dealer
+    set md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      sap_number = #{record.sapNumber,jdbcType=VARCHAR},
+      business_name = #{record.businessName,jdbcType=VARCHAR},
+      business_nature = #{record.businessNature,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      is_agent = #{record.isAgent,jdbcType=VARCHAR},
+      is_merge_certificate = #{record.isMergeCertificate,jdbcType=VARCHAR},
+      c_id = #{record.cId,jdbcType=VARCHAR},
+      o_id = #{record.oId,jdbcType=VARCHAR},
+      t_id = #{record.tId,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      r_addr = #{record.rAddr,jdbcType=VARCHAR},
+      corpo_name = #{record.corpoName,jdbcType=VARCHAR},
+      delete = #{record.delete,jdbcType=VARCHAR},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    <result column="md_guid" jdbcType="VARCHAR" property="mdGuid" />
+    <result column="mdm_id" jdbcType="VARCHAR" property="mdmId" />
+    <result column="dealer_code" jdbcType="VARCHAR" property="dealerCode" />
+    <result column="sap_number" jdbcType="VARCHAR" property="sapNumber" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="business_nature" jdbcType="VARCHAR" property="businessNature" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="is_agent" jdbcType="VARCHAR" property="isAgent" />
+    <result column="is_merge_certificate" jdbcType="VARCHAR" property="isMergeCertificate" />
+    <result column="c_id" jdbcType="VARCHAR" property="cId" />
+    <result column="o_id" jdbcType="VARCHAR" property="oId" />
+    <result column="t_id" jdbcType="VARCHAR" property="tId" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="r_addr" jdbcType="VARCHAR" property="rAddr" />
+    <result column="corpo_name" jdbcType="VARCHAR" property="corpoName" />
+    <result column="delete" jdbcType="VARCHAR" property="delete" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    md_guid, mdm_id, dealer_code, sap_number, business_name, business_nature, business_type, 
+    is_agent, is_merge_certificate, c_id, o_id, t_id, p_id, province, city, area, r_addr, 
+    corpo_name, delete, modify_time
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample">
+    delete from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    insert into mdm_dealer (md_guid, mdm_id, dealer_code, 
+      sap_number, business_name, business_nature, 
+      business_type, is_agent, is_merge_certificate, 
+      c_id, o_id, t_id, p_id, 
+      province, city, area, 
+      r_addr, corpo_name, delete, 
+      modify_time)
+    values (#{mdGuid,jdbcType=VARCHAR}, #{mdmId,jdbcType=VARCHAR}, #{dealerCode,jdbcType=VARCHAR}, 
+      #{sapNumber,jdbcType=VARCHAR}, #{businessName,jdbcType=VARCHAR}, #{businessNature,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{isAgent,jdbcType=VARCHAR}, #{isMergeCertificate,jdbcType=VARCHAR}, 
+      #{cId,jdbcType=VARCHAR}, #{oId,jdbcType=VARCHAR}, #{tId,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{rAddr,jdbcType=VARCHAR}, #{corpoName,jdbcType=VARCHAR}, #{delete,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    insert into mdm_dealer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        md_guid,
+      </if>
+      <if test="mdmId != null">
+        mdm_id,
+      </if>
+      <if test="dealerCode != null">
+        dealer_code,
+      </if>
+      <if test="sapNumber != null">
+        sap_number,
+      </if>
+      <if test="businessName != null">
+        business_name,
+      </if>
+      <if test="businessNature != null">
+        business_nature,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="isAgent != null">
+        is_agent,
+      </if>
+      <if test="isMergeCertificate != null">
+        is_merge_certificate,
+      </if>
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="rAddr != null">
+        r_addr,
+      </if>
+      <if test="corpoName != null">
+        corpo_name,
+      </if>
+      <if test="delete != null">
+        delete,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        #{mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdmId != null">
+        #{mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealerCode != null">
+        #{dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sapNumber != null">
+        #{sapNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="businessName != null">
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessNature != null">
+        #{businessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null">
+        #{isAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="isMergeCertificate != null">
+        #{isMergeCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="oId != null">
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="rAddr != null">
+        #{rAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="corpoName != null">
+        #{corpoName,jdbcType=VARCHAR},
+      </if>
+      <if test="delete != null">
+        #{delete,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample" resultType="java.lang.Long">
+    select count(*) from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mdm_dealer
+    <set>
+      <if test="record.mdGuid != null">
+        md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mdmId != null">
+        mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealerCode != null">
+        dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sapNumber != null">
+        sap_number = #{record.sapNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessName != null">
+        business_name = #{record.businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessNature != null">
+        business_nature = #{record.businessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null">
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAgent != null">
+        is_agent = #{record.isAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMergeCertificate != null">
+        is_merge_certificate = #{record.isMergeCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oId != null">
+        o_id = #{record.oId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rAddr != null">
+        r_addr = #{record.rAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpoName != null">
+        corpo_name = #{record.corpoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delete != null">
+        delete = #{record.delete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null">
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mdm_dealer
+    set md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      sap_number = #{record.sapNumber,jdbcType=VARCHAR},
+      business_name = #{record.businessName,jdbcType=VARCHAR},
+      business_nature = #{record.businessNature,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      is_agent = #{record.isAgent,jdbcType=VARCHAR},
+      is_merge_certificate = #{record.isMergeCertificate,jdbcType=VARCHAR},
+      c_id = #{record.cId,jdbcType=VARCHAR},
+      o_id = #{record.oId,jdbcType=VARCHAR},
+      t_id = #{record.tId,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      r_addr = #{record.rAddr,jdbcType=VARCHAR},
+      corpo_name = #{record.corpoName,jdbcType=VARCHAR},
+      delete = #{record.delete,jdbcType=VARCHAR},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    <result column="md_guid" jdbcType="VARCHAR" property="mdGuid" />
+    <result column="mdm_id" jdbcType="VARCHAR" property="mdmId" />
+    <result column="dealer_code" jdbcType="VARCHAR" property="dealerCode" />
+    <result column="sap_number" jdbcType="VARCHAR" property="sapNumber" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="business_nature" jdbcType="VARCHAR" property="businessNature" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="is_agent" jdbcType="VARCHAR" property="isAgent" />
+    <result column="is_merge_certificate" jdbcType="VARCHAR" property="isMergeCertificate" />
+    <result column="c_id" jdbcType="VARCHAR" property="cId" />
+    <result column="o_id" jdbcType="VARCHAR" property="oId" />
+    <result column="t_id" jdbcType="VARCHAR" property="tId" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="r_addr" jdbcType="VARCHAR" property="rAddr" />
+    <result column="corpo_name" jdbcType="VARCHAR" property="corpoName" />
+    <result column="delete" jdbcType="VARCHAR" property="delete" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    md_guid, mdm_id, dealer_code, sap_number, business_name, business_nature, business_type, 
+    is_agent, is_merge_certificate, c_id, o_id, t_id, p_id, province, city, area, r_addr, 
+    corpo_name, delete, modify_time
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample">
+    delete from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    insert into mdm_dealer (md_guid, mdm_id, dealer_code, 
+      sap_number, business_name, business_nature, 
+      business_type, is_agent, is_merge_certificate, 
+      c_id, o_id, t_id, p_id, 
+      province, city, area, 
+      r_addr, corpo_name, delete, 
+      modify_time)
+    values (#{mdGuid,jdbcType=VARCHAR}, #{mdmId,jdbcType=VARCHAR}, #{dealerCode,jdbcType=VARCHAR}, 
+      #{sapNumber,jdbcType=VARCHAR}, #{businessName,jdbcType=VARCHAR}, #{businessNature,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{isAgent,jdbcType=VARCHAR}, #{isMergeCertificate,jdbcType=VARCHAR}, 
+      #{cId,jdbcType=VARCHAR}, #{oId,jdbcType=VARCHAR}, #{tId,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{rAddr,jdbcType=VARCHAR}, #{corpoName,jdbcType=VARCHAR}, #{delete,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealer">
+    insert into mdm_dealer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        md_guid,
+      </if>
+      <if test="mdmId != null">
+        mdm_id,
+      </if>
+      <if test="dealerCode != null">
+        dealer_code,
+      </if>
+      <if test="sapNumber != null">
+        sap_number,
+      </if>
+      <if test="businessName != null">
+        business_name,
+      </if>
+      <if test="businessNature != null">
+        business_nature,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="isAgent != null">
+        is_agent,
+      </if>
+      <if test="isMergeCertificate != null">
+        is_merge_certificate,
+      </if>
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="rAddr != null">
+        r_addr,
+      </if>
+      <if test="corpoName != null">
+        corpo_name,
+      </if>
+      <if test="delete != null">
+        delete,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        #{mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdmId != null">
+        #{mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealerCode != null">
+        #{dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sapNumber != null">
+        #{sapNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="businessName != null">
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessNature != null">
+        #{businessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null">
+        #{isAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="isMergeCertificate != null">
+        #{isMergeCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="oId != null">
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="rAddr != null">
+        #{rAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="corpoName != null">
+        #{corpoName,jdbcType=VARCHAR},
+      </if>
+      <if test="delete != null">
+        #{delete,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmDealerExample" resultType="java.lang.Long">
+    select count(*) from mdm_dealer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mdm_dealer
+    <set>
+      <if test="record.mdGuid != null">
+        md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mdmId != null">
+        mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealerCode != null">
+        dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sapNumber != null">
+        sap_number = #{record.sapNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessName != null">
+        business_name = #{record.businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessNature != null">
+        business_nature = #{record.businessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null">
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAgent != null">
+        is_agent = #{record.isAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMergeCertificate != null">
+        is_merge_certificate = #{record.isMergeCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oId != null">
+        o_id = #{record.oId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rAddr != null">
+        r_addr = #{record.rAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpoName != null">
+        corpo_name = #{record.corpoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delete != null">
+        delete = #{record.delete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null">
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mdm_dealer
+    set md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      dealer_code = #{record.dealerCode,jdbcType=VARCHAR},
+      sap_number = #{record.sapNumber,jdbcType=VARCHAR},
+      business_name = #{record.businessName,jdbcType=VARCHAR},
+      business_nature = #{record.businessNature,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      is_agent = #{record.isAgent,jdbcType=VARCHAR},
+      is_merge_certificate = #{record.isMergeCertificate,jdbcType=VARCHAR},
+      c_id = #{record.cId,jdbcType=VARCHAR},
+      o_id = #{record.oId,jdbcType=VARCHAR},
+      t_id = #{record.tId,jdbcType=VARCHAR},
+      p_id = #{record.pId,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      r_addr = #{record.rAddr,jdbcType=VARCHAR},
+      corpo_name = #{record.corpoName,jdbcType=VARCHAR},
+      delete = #{record.delete,jdbcType=VARCHAR},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

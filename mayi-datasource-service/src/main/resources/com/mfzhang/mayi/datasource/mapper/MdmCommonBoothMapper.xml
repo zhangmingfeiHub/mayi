@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mfzhang.mayi.datasource.mapper.MdmCommonBoothMapper">
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.MdmCommonBooth">
+    <result column="md_guid" jdbcType="VARCHAR" property="mdGuid" />
+    <result column="mdm_id" jdbcType="VARCHAR" property="mdmId" />
+    <result column="booth_code" jdbcType="VARCHAR" property="boothCode" />
+    <result column="cad_code" jdbcType="VARCHAR" property="cadCode" />
+    <result column="space_type" jdbcType="VARCHAR" property="spaceType" />
+    <result column="mall_code" jdbcType="VARCHAR" property="mallCode" />
+    <result column="mall_entity_code" jdbcType="VARCHAR" property="mallEntityCode" />
+    <result column="buliding_code" jdbcType="VARCHAR" property="bulidingCode" />
+    <result column="floor_code" jdbcType="VARCHAR" property="floorCode" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="is_lock" jdbcType="INTEGER" property="isLock" />
+    <result column="category_one_code" jdbcType="VARCHAR" property="categoryOneCode" />
+    <result column="category_two_id" jdbcType="VARCHAR" property="categoryTwoId" />
+    <result column="budgetary_price" jdbcType="DOUBLE" property="budgetaryPrice" />
+    <result column="booth_level" jdbcType="VARCHAR" property="boothLevel" />
+    <result column="booth_desc" jdbcType="VARCHAR" property="boothDesc" />
+    <result column="booth_status" jdbcType="VARCHAR" property="boothStatus" />
+    <result column="delete" jdbcType="VARCHAR" property="delete" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="createby" jdbcType="VARCHAR" property="createby" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="modifyby" jdbcType="VARCHAR" property="modifyby" />
+    <result column="operator_email" jdbcType="VARCHAR" property="operatorEmail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    md_guid, mdm_id, booth_code, cad_code, space_type, mall_code, mall_entity_code, buliding_code, 
+    floor_code, start_time, end_time, is_lock, category_one_code, category_two_id, budgetary_price, 
+    booth_level, booth_desc, booth_status, delete, createtime, createby, modifytime, 
+    modifyby, operator_email
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmCommonBoothExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mdm_common_booth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmCommonBoothExample">
+    delete from mdm_common_booth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mfzhang.mayi.datasource.domain.MdmCommonBooth">
+    insert into mdm_common_booth (md_guid, mdm_id, booth_code, 
+      cad_code, space_type, mall_code, 
+      mall_entity_code, buliding_code, floor_code, 
+      start_time, end_time, is_lock, 
+      category_one_code, category_two_id, budgetary_price, 
+      booth_level, booth_desc, booth_status, 
+      delete, createtime, createby, 
+      modifytime, modifyby, operator_email
+      )
+    values (#{mdGuid,jdbcType=VARCHAR}, #{mdmId,jdbcType=VARCHAR}, #{boothCode,jdbcType=VARCHAR}, 
+      #{cadCode,jdbcType=VARCHAR}, #{spaceType,jdbcType=VARCHAR}, #{mallCode,jdbcType=VARCHAR}, 
+      #{mallEntityCode,jdbcType=VARCHAR}, #{bulidingCode,jdbcType=VARCHAR}, #{floorCode,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{isLock,jdbcType=INTEGER}, 
+      #{categoryOneCode,jdbcType=VARCHAR}, #{categoryTwoId,jdbcType=VARCHAR}, #{budgetaryPrice,jdbcType=DOUBLE}, 
+      #{boothLevel,jdbcType=VARCHAR}, #{boothDesc,jdbcType=VARCHAR}, #{boothStatus,jdbcType=VARCHAR}, 
+      #{delete,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{createby,jdbcType=VARCHAR}, 
+      #{modifytime,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=VARCHAR}, #{operatorEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mfzhang.mayi.datasource.domain.MdmCommonBooth">
+    insert into mdm_common_booth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        md_guid,
+      </if>
+      <if test="mdmId != null">
+        mdm_id,
+      </if>
+      <if test="boothCode != null">
+        booth_code,
+      </if>
+      <if test="cadCode != null">
+        cad_code,
+      </if>
+      <if test="spaceType != null">
+        space_type,
+      </if>
+      <if test="mallCode != null">
+        mall_code,
+      </if>
+      <if test="mallEntityCode != null">
+        mall_entity_code,
+      </if>
+      <if test="bulidingCode != null">
+        buliding_code,
+      </if>
+      <if test="floorCode != null">
+        floor_code,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="isLock != null">
+        is_lock,
+      </if>
+      <if test="categoryOneCode != null">
+        category_one_code,
+      </if>
+      <if test="categoryTwoId != null">
+        category_two_id,
+      </if>
+      <if test="budgetaryPrice != null">
+        budgetary_price,
+      </if>
+      <if test="boothLevel != null">
+        booth_level,
+      </if>
+      <if test="boothDesc != null">
+        booth_desc,
+      </if>
+      <if test="boothStatus != null">
+        booth_status,
+      </if>
+      <if test="delete != null">
+        delete,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="createby != null">
+        createby,
+      </if>
+      <if test="modifytime != null">
+        modifytime,
+      </if>
+      <if test="modifyby != null">
+        modifyby,
+      </if>
+      <if test="operatorEmail != null">
+        operator_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mdGuid != null">
+        #{mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdmId != null">
+        #{mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="boothCode != null">
+        #{boothCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cadCode != null">
+        #{cadCode,jdbcType=VARCHAR},
+      </if>
+      <if test="spaceType != null">
+        #{spaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="mallCode != null">
+        #{mallCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mallEntityCode != null">
+        #{mallEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bulidingCode != null">
+        #{bulidingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="floorCode != null">
+        #{floorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLock != null">
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="categoryOneCode != null">
+        #{categoryOneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryTwoId != null">
+        #{categoryTwoId,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetaryPrice != null">
+        #{budgetaryPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="boothLevel != null">
+        #{boothLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="boothDesc != null">
+        #{boothDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="boothStatus != null">
+        #{boothStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="delete != null">
+        #{delete,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyby != null">
+        #{modifyby,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorEmail != null">
+        #{operatorEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.MdmCommonBoothExample" resultType="java.lang.Long">
+    select count(*) from mdm_common_booth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mdm_common_booth
+    <set>
+      <if test="record.mdGuid != null">
+        md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mdmId != null">
+        mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boothCode != null">
+        booth_code = #{record.boothCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cadCode != null">
+        cad_code = #{record.cadCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spaceType != null">
+        space_type = #{record.spaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mallCode != null">
+        mall_code = #{record.mallCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mallEntityCode != null">
+        mall_entity_code = #{record.mallEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bulidingCode != null">
+        buliding_code = #{record.bulidingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorCode != null">
+        floor_code = #{record.floorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isLock != null">
+        is_lock = #{record.isLock,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryOneCode != null">
+        category_one_code = #{record.categoryOneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryTwoId != null">
+        category_two_id = #{record.categoryTwoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.budgetaryPrice != null">
+        budgetary_price = #{record.budgetaryPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.boothLevel != null">
+        booth_level = #{record.boothLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boothDesc != null">
+        booth_desc = #{record.boothDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boothStatus != null">
+        booth_status = #{record.boothStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delete != null">
+        delete = #{record.delete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createby != null">
+        createby = #{record.createby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifytime != null">
+        modifytime = #{record.modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyby != null">
+        modifyby = #{record.modifyby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorEmail != null">
+        operator_email = #{record.operatorEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mdm_common_booth
+    set md_guid = #{record.mdGuid,jdbcType=VARCHAR},
+      mdm_id = #{record.mdmId,jdbcType=VARCHAR},
+      booth_code = #{record.boothCode,jdbcType=VARCHAR},
+      cad_code = #{record.cadCode,jdbcType=VARCHAR},
+      space_type = #{record.spaceType,jdbcType=VARCHAR},
+      mall_code = #{record.mallCode,jdbcType=VARCHAR},
+      mall_entity_code = #{record.mallEntityCode,jdbcType=VARCHAR},
+      buliding_code = #{record.bulidingCode,jdbcType=VARCHAR},
+      floor_code = #{record.floorCode,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      is_lock = #{record.isLock,jdbcType=INTEGER},
+      category_one_code = #{record.categoryOneCode,jdbcType=VARCHAR},
+      category_two_id = #{record.categoryTwoId,jdbcType=VARCHAR},
+      budgetary_price = #{record.budgetaryPrice,jdbcType=DOUBLE},
+      booth_level = #{record.boothLevel,jdbcType=VARCHAR},
+      booth_desc = #{record.boothDesc,jdbcType=VARCHAR},
+      booth_status = #{record.boothStatus,jdbcType=VARCHAR},
+      delete = #{record.delete,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      createby = #{record.createby,jdbcType=VARCHAR},
+      modifytime = #{record.modifytime,jdbcType=TIMESTAMP},
+      modifyby = #{record.modifyby,jdbcType=VARCHAR},
+      operator_email = #{record.operatorEmail,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

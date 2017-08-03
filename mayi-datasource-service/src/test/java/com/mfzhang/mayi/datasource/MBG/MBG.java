@@ -23,12 +23,18 @@ public class MBG {
 	public static void main(String[] args) {
 		
 		try {
+			System.out.println(System.getProperty("user.dir"));
+			File directory = new File("");// 参数为空
+	        String courseFile = directory.getCanonicalPath();
+			System.out.println(courseFile);
+			
 			List<String> warnings = new ArrayList<String>();
 			boolean overwrite = true;
 			// File configFile = new File("D:\\work\\proj\\git\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig.xml");
 			// String file = "D:\\work\\proj\\git\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig3.xml";
-			String file = "E:\\mingfei.zhang\\work\\git repo\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig3.xml";
-			File configFile = new File(file);
+			// String file = "E:\\mingfei.zhang\\work\\git repo\\mayi\\mayi-datasource-service\\src\\test\\resources\\generatorConfig3.xml";
+			String configFileStr = System.getProperty("user.dir") + "/src/test/resources/generatorConfig3.xml";
+			File configFile = new File(configFileStr);
 			ConfigurationParser cp = new ConfigurationParser(warnings);
 			Configuration config = cp.parseConfiguration(configFile);
 			DefaultShellCallback callback = new DefaultShellCallback(overwrite);
