@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,16 +15,19 @@ import com.mfzhang.mayi.datasource.bean.vo.UserInfoVo;
 import com.mfzhang.mayi.datasource.service.UserService;
 
 @Service("userService")
+@PropertySource("classpath:db.properties")
 public class UserServiceImpl implements UserService {
 
 	private final static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Autowired
 	private ObjectMapper objectMapper;
+	@Value("${db.mysql.driver}")
+	private String driverClass;
 	
 	@Override
 	public UserInfoVo getUserInfoByUserId(Integer userId) {
-		logger.info("-----getUserInfoByUserId-----，入参={}", userId);
+		logger.info("-----getUserInfoByUserId-----，入参={}", driverClass);
 		return null;
 	}
 

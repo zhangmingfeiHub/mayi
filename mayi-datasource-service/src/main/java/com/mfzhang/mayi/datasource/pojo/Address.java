@@ -1,13 +1,10 @@
-package com.mfzhang.mayi.datasource;
-
-import org.springframework.stereotype.Component;
+package com.mfzhang.mayi.datasource.pojo;
 
 /**
  * 
  *
  * @author Guo YL 2017年6月20日 下午10:31:38
  */
-@Component
 public class Address {
 
 	private String provinceCode;

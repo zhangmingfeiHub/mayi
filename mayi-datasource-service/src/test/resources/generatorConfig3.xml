@@ -46,7 +46,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="user_info">
+		<table tableName="oms_market_info">
 			<property name="useActualColumnNames" value="false" />
 			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
 		</table>

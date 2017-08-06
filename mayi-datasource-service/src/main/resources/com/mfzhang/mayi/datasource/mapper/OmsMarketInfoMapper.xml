@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mfzhang.mayi.datasource.mapper.OmsMarketInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mfzhang.mayi.datasource.domain.OmsMarketInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="id_uuid" jdbcType="INTEGER" property="idUuid" />
+    <result column="market_number" jdbcType="VARCHAR" property="marketNumber" />
+    <result column="market_name" jdbcType="VARCHAR" property="marketName" />
+    <result column="first_org_id" jdbcType="INTEGER" property="firstOrgId" />
+    <result column="second_org_id" jdbcType="INTEGER" property="secondOrgId" />
+    <result column="first_org_name" jdbcType="VARCHAR" property="firstOrgName" />
+    <result column="second_org_name" jdbcType="VARCHAR" property="secondOrgName" />
+    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="district_id" jdbcType="INTEGER" property="districtId" />
+    <result column="market_address" jdbcType="VARCHAR" property="marketAddress" />
+    <result column="market_short" jdbcType="VARCHAR" property="marketShort" />
+    <result column="market_stamp" jdbcType="VARCHAR" property="marketStamp" />
+    <result column="market_pic" jdbcType="VARCHAR" property="marketPic" />
+    <result column="lon" jdbcType="VARCHAR" property="lon" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="carport" jdbcType="INTEGER" property="carport" />
+    <result column="opening_hours" jdbcType="VARCHAR" property="openingHours" />
+    <result column="out_market_id" jdbcType="VARCHAR" property="outMarketId" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, id_uuid, market_number, market_name, first_org_id, second_org_id, first_org_name, 
+    second_org_name, province_id, province_name, city_id, city_name, district_id, market_address, 
+    market_short, market_stamp, market_pic, lon, lat, carport, opening_hours, out_market_id, 
+    is_del, create_date, update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsMarketInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oms_market_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsMarketInfoExample">
+    delete from oms_market_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mfzhang.mayi.datasource.domain.OmsMarketInfo">
+    insert into oms_market_info (id, id_uuid, market_number, 
+      market_name, first_org_id, second_org_id, 
+      first_org_name, second_org_name, province_id, 
+      province_name, city_id, city_name, 
+      district_id, market_address, market_short, 
+      market_stamp, market_pic, lon, 
+      lat, carport, opening_hours, 
+      out_market_id, is_del, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{idUuid,jdbcType=INTEGER}, #{marketNumber,jdbcType=VARCHAR}, 
+      #{marketName,jdbcType=VARCHAR}, #{firstOrgId,jdbcType=INTEGER}, #{secondOrgId,jdbcType=INTEGER}, 
+      #{firstOrgName,jdbcType=VARCHAR}, #{secondOrgName,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{districtId,jdbcType=INTEGER}, #{marketAddress,jdbcType=VARCHAR}, #{marketShort,jdbcType=VARCHAR}, 
+      #{marketStamp,jdbcType=VARCHAR}, #{marketPic,jdbcType=VARCHAR}, #{lon,jdbcType=VARCHAR}, 
+      #{lat,jdbcType=VARCHAR}, #{carport,jdbcType=INTEGER}, #{openingHours,jdbcType=VARCHAR}, 
+      #{outMarketId,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mfzhang.mayi.datasource.domain.OmsMarketInfo">
+    insert into oms_market_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="idUuid != null">
+        id_uuid,
+      </if>
+      <if test="marketNumber != null">
+        market_number,
+      </if>
+      <if test="marketName != null">
+        market_name,
+      </if>
+      <if test="firstOrgId != null">
+        first_org_id,
+      </if>
+      <if test="secondOrgId != null">
+        second_org_id,
+      </if>
+      <if test="firstOrgName != null">
+        first_org_name,
+      </if>
+      <if test="secondOrgName != null">
+        second_org_name,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="districtId != null">
+        district_id,
+      </if>
+      <if test="marketAddress != null">
+        market_address,
+      </if>
+      <if test="marketShort != null">
+        market_short,
+      </if>
+      <if test="marketStamp != null">
+        market_stamp,
+      </if>
+      <if test="marketPic != null">
+        market_pic,
+      </if>
+      <if test="lon != null">
+        lon,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="carport != null">
+        carport,
+      </if>
+      <if test="openingHours != null">
+        opening_hours,
+      </if>
+      <if test="outMarketId != null">
+        out_market_id,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idUuid != null">
+        #{idUuid,jdbcType=INTEGER},
+      </if>
+      <if test="marketNumber != null">
+        #{marketNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="marketName != null">
+        #{marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstOrgId != null">
+        #{firstOrgId,jdbcType=INTEGER},
+      </if>
+      <if test="secondOrgId != null">
+        #{secondOrgId,jdbcType=INTEGER},
+      </if>
+      <if test="firstOrgName != null">
+        #{firstOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondOrgName != null">
+        #{secondOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null">
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="marketAddress != null">
+        #{marketAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="marketShort != null">
+        #{marketShort,jdbcType=VARCHAR},
+      </if>
+      <if test="marketStamp != null">
+        #{marketStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPic != null">
+        #{marketPic,jdbcType=VARCHAR},
+      </if>
+      <if test="lon != null">
+        #{lon,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="carport != null">
+        #{carport,jdbcType=INTEGER},
+      </if>
+      <if test="openingHours != null">
+        #{openingHours,jdbcType=VARCHAR},
+      </if>
+      <if test="outMarketId != null">
+        #{outMarketId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mfzhang.mayi.datasource.domain.OmsMarketInfoExample" resultType="java.lang.Long">
+    select count(*) from oms_market_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update oms_market_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.idUuid != null">
+        id_uuid = #{record.idUuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketNumber != null">
+        market_number = #{record.marketNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketName != null">
+        market_name = #{record.marketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstOrgId != null">
+        first_org_id = #{record.firstOrgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondOrgId != null">
+        second_org_id = #{record.secondOrgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstOrgName != null">
+        first_org_name = #{record.firstOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondOrgName != null">
+        second_org_name = #{record.secondOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceId != null">
+        province_id = #{record.provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceName != null">
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null">
+        city_id = #{record.cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityName != null">
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtId != null">
+        district_id = #{record.districtId,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketAddress != null">
+        market_address = #{record.marketAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketShort != null">
+        market_short = #{record.marketShort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketStamp != null">
+        market_stamp = #{record.marketStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketPic != null">
+        market_pic = #{record.marketPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lon != null">
+        lon = #{record.lon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lat != null">
+        lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carport != null">
+        carport = #{record.carport,jdbcType=INTEGER},
+      </if>
+      <if test="record.openingHours != null">
+        opening_hours = #{record.openingHours,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outMarketId != null">
+        out_market_id = #{record.outMarketId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update oms_market_info
+    set id = #{record.id,jdbcType=INTEGER},
+      id_uuid = #{record.idUuid,jdbcType=INTEGER},
+      market_number = #{record.marketNumber,jdbcType=VARCHAR},
+      market_name = #{record.marketName,jdbcType=VARCHAR},
+      first_org_id = #{record.firstOrgId,jdbcType=INTEGER},
+      second_org_id = #{record.secondOrgId,jdbcType=INTEGER},
+      first_org_name = #{record.firstOrgName,jdbcType=VARCHAR},
+      second_org_name = #{record.secondOrgName,jdbcType=VARCHAR},
+      province_id = #{record.provinceId,jdbcType=VARCHAR},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=VARCHAR},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      district_id = #{record.districtId,jdbcType=INTEGER},
+      market_address = #{record.marketAddress,jdbcType=VARCHAR},
+      market_short = #{record.marketShort,jdbcType=VARCHAR},
+      market_stamp = #{record.marketStamp,jdbcType=VARCHAR},
+      market_pic = #{record.marketPic,jdbcType=VARCHAR},
+      lon = #{record.lon,jdbcType=VARCHAR},
+      lat = #{record.lat,jdbcType=VARCHAR},
+      carport = #{record.carport,jdbcType=INTEGER},
+      opening_hours = #{record.openingHours,jdbcType=VARCHAR},
+      out_market_id = #{record.outMarketId,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

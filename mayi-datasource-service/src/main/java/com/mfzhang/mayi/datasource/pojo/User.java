@@ -1,16 +1,12 @@
-package com.mfzhang.mayi.datasource;
+package com.mfzhang.mayi.datasource.pojo;
 
 import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * 
  *
  * @author Guo YL 2017年6月20日 下午10:33:44
  */
-@Component
 public class User {
 
 	private Integer userId;
@@ -19,7 +15,6 @@ public class User {
 	private Integer age;
 	private Date birth;
 
-	@Autowired
 	private Address address;
 
 	public Integer getUserId() {

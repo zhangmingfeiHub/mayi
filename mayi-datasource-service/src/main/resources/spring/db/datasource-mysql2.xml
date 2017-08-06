@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
 	<bean id="datasource2" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
-		<property name="driverClass" value="${db.mysql.driver}" />
+		<property name="driverClassName" value="${db.mysql.driver}" />
 		<property name="url" value="${db.mysql.url2}" />
 		<property name="username" value="${db.mysql.username2}" />
 		<property name="password" value="${db.mysql.password2}" />
@@ -38,7 +38,7 @@
 	</bean>
 	
 	<bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" value="datasource2" />
+		<property name="dataSource" ref="datasource2" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath*:com/mfzhang/mayi/datasource/mapper2/*.xml</value>
