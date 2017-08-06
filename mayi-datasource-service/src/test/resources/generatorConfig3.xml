@@ -9,7 +9,11 @@
 	<!-- <classPathEntry location=""/> -->
 
 	<context id="DevSchema" targetRuntime="MyBatis3">
+	
+		<property name="autoDelimitKeywords" value="false"/>
+	
 		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		
 		
 		<!-- 去除自动生成的注释 -->
 		<commentGenerator>
