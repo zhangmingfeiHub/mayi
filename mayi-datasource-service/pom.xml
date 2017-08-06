@@ -20,6 +20,11 @@
 		    <groupId>${project.groupId}</groupId>
 		    <artifactId>mayi-datasource-api</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>${project.groupId}</groupId>
+		    <artifactId>mayi-common</artifactId>
+		</dependency>
+		
 		<!-- spring jar -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -84,6 +89,23 @@
 		    <groupId>org.mybatis.generator</groupId>
 		    <artifactId>mybatis-generator-core</artifactId>
 		</dependency>
+		
+		<!-- jackson json -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		</dependency>
+		
+		<!-- javax servlet -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>javaee-api</artifactId>
+		</dependency>
+		
 	</dependencies>
 	
 	<build>

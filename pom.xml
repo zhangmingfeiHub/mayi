@@ -29,6 +29,9 @@
 		<mybatis.version>3.4.4</mybatis.version>
 		<mybatis.spring.version>1.3.1</mybatis.spring.version>
 		<mybatis.generator.core.version>1.3.5</mybatis.generator.core.version>
+		<jackson.version>2.9.0</jackson.version>
+		<javax.servlet.version>3.1.0</javax.servlet.version>
+		<javaee.version>7.0</javaee.version>
 	</properties>
 	
 	<profiles>
@@ -67,6 +70,11 @@
 			<dependency>
 			    <groupId>${project.groupId}</groupId>
 			    <artifactId>mayi-datasource-api</artifactId>
+			    <version>${project.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			<dependency>
+			    <groupId>${project.groupId}</groupId>
+			    <artifactId>mayi-common</artifactId>
 			    <version>${project.version}</version> <!-- ${} 引用 -->
 			</dependency>
 			
@@ -159,6 +167,27 @@
 			    <groupId>org.mybatis.generator</groupId>
 			    <artifactId>mybatis-generator-core</artifactId>
 			    <version>${mybatis.generator.core.version}</version>
+			</dependency>
+			
+			<!-- jackson json -->
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>${jackson.version}</version>
+			</dependency>
+			
+			<!-- javax servlet -->
+			<dependency>
+			    <groupId>javax.servlet</groupId>
+			    <artifactId>javax.servlet-api</artifactId>
+			    <version>${javax.servlet.version}</version>
+			    <scope>provided</scope> <!-- 该包只在编译和测试的时候用 -->
+			</dependency>
+			<dependency>
+			    <groupId>javax</groupId>
+			    <artifactId>javaee-api</artifactId>
+			    <version>${javaee.version}</version>
+			    <scope>provided</scope>
 			</dependency>
 			
 		</dependencies>
