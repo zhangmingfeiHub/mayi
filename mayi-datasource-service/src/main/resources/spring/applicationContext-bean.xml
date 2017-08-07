@@ -11,8 +11,19 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true"></property>
+		<property name="location">
+			<list>
+				<value>classpath:system.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<context:property-placeholder ignore-resource-not-found="true" location="classpath:system.properties" />
+
 	<bean id="student" class="com.mfzhang.mayi.datasource.pojo.Student">
-		<constructor-arg name="id" value="100"></constructor-arg>
+		<constructor-arg name="id" value="${mayi.student.id}"></constructor-arg>
 		<constructor-arg name="name" value="stuName100" ></constructor-arg>
 		<constructor-arg name="mealCard" ref="mealCard" ></constructor-arg>
 		<constructor-arg name="courseList" ><null/></constructor-arg>

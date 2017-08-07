@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserInfoVo getUserInfoByUserId(Integer userId) {
-		logger.info("-----getUserInfoByUserId-----，入参={}", driverClass);
+		logger.info("-----getUserInfoByUserId-----，入参={}", userId);
 		return null;
 	}
 
