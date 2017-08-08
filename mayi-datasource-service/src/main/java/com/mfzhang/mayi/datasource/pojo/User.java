@@ -2,6 +2,8 @@ package com.mfzhang.mayi.datasource.pojo;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * 
  *
@@ -16,6 +18,9 @@ public class User {
 	private Date birth;
 
 	private Address address;
+	
+	@Value("${mayi.student.name}")
+	private String stuName;
 
 	public Integer getUserId() {
 		return userId;
@@ -26,7 +31,7 @@ public class User {
 	}
 
 	public String getUsername() {
-		return username;
+		return username + stuName;
 	}
 
 	public void setUsername(String username) {

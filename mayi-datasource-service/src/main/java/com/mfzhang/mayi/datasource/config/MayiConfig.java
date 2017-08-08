@@ -3,6 +3,7 @@ package com.mfzhang.mayi.datasource.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * 配置连接类，多个配置合在一起
@@ -11,7 +12,8 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @Import({BeanConfig.class, WebConfig.class})
-@ImportResource(locations = {"classpath:spring/applicationContext*.xml"})
+@ImportResource(locations = {"classpath:spring/applicationContext.xml"})
+@PropertySource(ignoreResourceNotFound=true, value = {"classpath:system.properties"})
 public class MayiConfig {
 
 }
