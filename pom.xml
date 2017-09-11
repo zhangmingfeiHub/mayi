@@ -12,6 +12,10 @@
 		<module>mayi-common</module>
 		<module>mayi-datasource-api</module>
 		<module>mayi-datasource-service</module>
+		<module>mayi-dubbo-provider</module>
+		<module>mayi-dubbo-consumer</module>
+		<module>mayi-dubbo-provider-api</module>
+		<module>mayi-dubbo-consumer-api</module>
 	</modules>
 	
 	<properties>
@@ -35,6 +39,7 @@
 		<jackson.version>2.9.0</jackson.version>
 		<javax.servlet.version>3.1.0</javax.servlet.version>
 		<javaee.version>7.0</javaee.version>
+		<alibaba.dubbo.version>2.5.4</alibaba.dubbo.version>
 	</properties>
 	
 	<profiles>
@@ -55,15 +60,15 @@
 			<properties>
 				<env>home</env>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 		<profile>
 			<id>company</id>
 			<properties>
 				<env>company</env>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 	</profiles>
 	
@@ -78,6 +83,16 @@
 			<dependency>
 			    <groupId>${project.groupId}</groupId>
 			    <artifactId>mayi-common</artifactId>
+			    <version>${project.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			<dependency>
+			    <groupId>${project.groupId}</groupId>
+			    <artifactId>mayi-dubbo-provider-api</artifactId>
+			    <version>${project.version}</version> <!-- ${} 引用 -->
+			</dependency>
+			<dependency>
+			    <groupId>${project.groupId}</groupId>
+			    <artifactId>mayi-dubbo-consumer-api</artifactId>
 			    <version>${project.version}</version> <!-- ${} 引用 -->
 			</dependency>
 			
@@ -193,6 +208,12 @@
 			    <scope>provided</scope>
 			</dependency>
 			
+			<!-- alibaba dubbo jar -->
+			<dependency>
+			    <groupId>com.alibaba</groupId>
+			    <artifactId>dubbo</artifactId>
+			    <version>${alibaba.dubbo.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
