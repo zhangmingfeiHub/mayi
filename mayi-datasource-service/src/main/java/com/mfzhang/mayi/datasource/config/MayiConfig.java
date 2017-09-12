@@ -13,6 +13,10 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @Import({BeanConfig.class, WebConfig.class})
 @ImportResource(locations = {"classpath:spring/applicationContext.xml"})
+/*
+ * 1、
+ * 2、@PropertySource 注解需放在config配置类 或 可被Spring扫描到的类上；
+ * */
 @PropertySource(ignoreResourceNotFound=true, value = {"classpath:system.properties"})
 public class MayiConfig {
 

@@ -3,6 +3,8 @@ package com.mfzhang.mayi.datasource.pojo;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * 
  * 
@@ -16,7 +18,9 @@ public class Student implements Serializable {
 	 */
 	private static final long serialVersionUID = -2507224947004948670L;
 	
+	@Value("${mayi.student.id}")
 	private Integer id;
+	@Value("${mayi.student.name:NAME1200}")
 	private String name;
 
 	private MealCard mealCard; // 餐卡

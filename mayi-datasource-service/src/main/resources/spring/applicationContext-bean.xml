@@ -23,7 +23,7 @@
 	<!-- <context:property-placeholder ignore-resource-not-found="true" location="classpath:system.properties" /> -->
 
 	<bean id="student" class="com.mfzhang.mayi.datasource.pojo.Student">
-		<constructor-arg name="id" value="${mayi.student.id}"></constructor-arg>
+		<constructor-arg name="id" value="1"></constructor-arg>
 		<constructor-arg name="name" value="stuName100" ></constructor-arg>
 		<constructor-arg name="mealCard" ref="mealCard" ></constructor-arg>
 		<constructor-arg name="courseList" ><null/></constructor-arg>
