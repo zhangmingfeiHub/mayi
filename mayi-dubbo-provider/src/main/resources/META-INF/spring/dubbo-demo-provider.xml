@@ -12,6 +12,5 @@
     <dubbo:protocol name="dubbo" port="20880"/>
     
     <dubbo:service interface="com.mfzhang.mayi.dubbo.provider.service.DemoService" ref="demoService"/>
-    <bean id="demoService" class="com.mfzhang.mayi.dubbo.provider.service.DemoServiceImpl"/>
     
 </beans>

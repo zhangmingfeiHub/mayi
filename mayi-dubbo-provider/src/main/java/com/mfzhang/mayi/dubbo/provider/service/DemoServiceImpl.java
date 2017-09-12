@@ -3,6 +3,7 @@ package com.mfzhang.mayi.dubbo.provider.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.mfzhang.mayi.common.ServiceResult;
@@ -14,6 +15,7 @@ import com.mfzhang.mayi.common.utils.LogUtils;
  *
  * @author Guo YL 2017年9月12日 上午12:10:02
  */
+@Service("demoService")
 public class DemoServiceImpl implements DemoService {
 
 	private static final Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);

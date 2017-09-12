@@ -1,9 +1,6 @@
 package com.mfzhang.mayi.dubbo.consumer;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.mfzhang.mayi.common.ServiceResult;
-import com.mfzhang.mayi.dubbo.provider.service.DemoService;
+import com.alibaba.dubbo.container.Main;
 
 /**
  * 
@@ -13,12 +10,7 @@ import com.mfzhang.mayi.dubbo.provider.service.DemoService;
 public class ConsumerApplication {
 
 	public static void main(String[] args) throws Exception {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                new String[]{"META-INF/spring/dubbo-demo-consumer.xml"});
-        context.start();
-        DemoService demoService = (DemoService) context.getBean("demoService"); // obtain proxy object for remote invocation
-        ServiceResult<String> serviceResult = demoService.sayHello("world"); // execute remote invocation
-        System.out.println(serviceResult.getData()); // show the result
+        Main.main(args);
     }
 	
 }
