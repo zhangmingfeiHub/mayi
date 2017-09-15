@@ -28,7 +28,7 @@ public class ConsumerDemoServiceImpl implements ConsumerDemoService {
 			ServiceResult<String> serviceResult = demoService.sayHello(name);
 			LogUtils.printLog(logger, Level.INFO, "调用服务提供方接口，返回结果={}", objectMapper.writeValueAsString(serviceResult));
 		} catch (Exception e) {
-			LogUtils.printLog(logger, Level.ERROR, "调用服务提供方接口异常：{}", e);
+			LogUtils.printLog(logger, Level.ERROR, "调用服务提供方接口异常：{}", e.getLocalizedMessage());
 		}
 	}
 

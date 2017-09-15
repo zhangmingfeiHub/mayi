@@ -36,6 +36,18 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-beans</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring.version}</version> <!-- ${} 引用 -->
+		</dependency>
+		
+		<!-- test jar -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		
 	</dependencies>  
 
 </project>
