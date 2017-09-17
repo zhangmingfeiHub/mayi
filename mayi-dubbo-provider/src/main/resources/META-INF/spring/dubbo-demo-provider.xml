@@ -10,6 +10,6 @@
     <dubbo:annotation package="com.mfzhang.mayi.dubbo.provider" />
     
     <!-- 使用multicast广播注册中心暴露服务地址 -->
-    <dubbo:registry address="multicast://224.5.6.7:1234" />
+    <dubbo:registry address="multicast://224.5.6.7:1234" file="${user.home}/.dubbo/mayi-dubbo-provider.cache" />
     
 </beans>
