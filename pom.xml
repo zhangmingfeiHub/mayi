@@ -39,7 +39,7 @@
 		<jackson.version>2.9.0</jackson.version>
 		<javax.servlet.version>3.1.0</javax.servlet.version>
 		<javaee.version>7.0</javaee.version>
-		<alibaba.dubbo.version>2.5.4</alibaba.dubbo.version>
+		<alibaba.dubbo.version>2.5.5</alibaba.dubbo.version>
 	</properties>
 	
 	<profiles>
@@ -60,15 +60,15 @@
 			<properties>
 				<env>home</env>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 		<profile>
 			<id>company</id>
 			<properties>
 				<env>company</env>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 	</profiles>
 	

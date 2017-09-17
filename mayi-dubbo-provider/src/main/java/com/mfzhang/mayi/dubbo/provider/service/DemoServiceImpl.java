@@ -31,12 +31,7 @@ public class DemoServiceImpl implements DemoService {
 			serviceResult.fail(StateCodeEnum.CODE_ERROR_PARAM.getCode(), StateCodeEnum.CODE_ERROR_PARAM.toString());
 			return serviceResult;
 		}
-		try {
-			Thread.sleep(2000);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		String msg = "hello, {0}";
 		serviceResult.success(MessageFormat.format(msg, name));
 		return serviceResult;
