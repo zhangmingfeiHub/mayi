@@ -46,6 +46,13 @@ public class ServiceResult<T> implements Serializable {
 		this.data = data;
 	}
 	
+	public void doRes(boolean ok, String code, String message, T data) {
+		this.ok = ok;
+		this.code = code;
+		this.message = message;
+		this.data = data;
+	}
+	
 	public boolean isOk() {
 		return ok;
 	}

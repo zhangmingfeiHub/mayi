@@ -14,4 +14,12 @@ public interface ConsumerDemoService {
 	 */
 	void sayTo(String name);
 	
+	/**
+	 * 打印某学生信息
+	 * 
+	 * @param id
+	 * @author Guo YL 2017年9月19日 上午12:06:14
+	 */
+	void printStudentInfo(Integer id);
+	
 }

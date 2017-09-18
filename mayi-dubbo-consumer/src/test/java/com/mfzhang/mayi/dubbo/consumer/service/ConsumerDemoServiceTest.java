@@ -18,4 +18,9 @@ public class ConsumerDemoServiceTest extends BaseServiceTest {
 		consumerDemoService.sayTo("Bob");
 	}
 	
+	@Test
+	public void testPrintStudentInfo() {
+		consumerDemoService.printStudentInfo(100);
+	}
+	
 }
