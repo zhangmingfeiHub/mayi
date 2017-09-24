@@ -20,4 +20,14 @@ public class CommonConstants {
 		public static final byte NO = 0;
 	}
 	
+	/**
+	 * 正则表达式
+	 *
+	 * @author Guo YL 2017年9月25日 上午12:44:45
+	 */
+	public static class RegExp {
+		/** 邮箱 */
+		public static final String EMAIL = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
+	}
+	
 }

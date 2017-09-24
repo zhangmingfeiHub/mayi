@@ -22,4 +22,18 @@ public interface ConsumerDemoService {
 	 */
 	void printStudentInfo(Integer id);
 	
+	/**
+	 * 参数验证用接口
+	 * 
+	 * @author Guo YL 2017年9月25日 上午1:00:57
+	 */
+	void saveUserInfo();
+	
+	/**
+	 * 参数验证用接口
+	 * 
+	 * @author Guo YL 2017年9月25日 上午1:00:57
+	 */
+	void updateUserInfo();
+	
 }

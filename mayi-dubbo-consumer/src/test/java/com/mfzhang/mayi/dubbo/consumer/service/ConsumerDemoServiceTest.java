@@ -23,4 +23,14 @@ public class ConsumerDemoServiceTest extends BaseServiceTest {
 		consumerDemoService.printStudentInfo(100);
 	}
 	
+	@Test
+	public void testSaveUserInfo() {
+		consumerDemoService.saveUserInfo();
+	}
+
+	@Test
+	public void testUpdateUserInfo() {
+		consumerDemoService.updateUserInfo();
+	}
+	
 }

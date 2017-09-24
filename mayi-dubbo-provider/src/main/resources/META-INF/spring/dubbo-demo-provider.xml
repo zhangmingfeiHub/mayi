@@ -10,11 +10,10 @@
     <dubbo:annotation package="com.mfzhang.mayi.dubbo.provider" />
     
     <dubbo:protocol name="dubbo" port="20890" />
-    <dubbo:protocol name="rmi" port="1099" />
+    <!-- <dubbo:protocol name="rmi" port="1099" /> -->
     
     <!-- 使用multicast广播注册中心暴露服务地址 -->
     <dubbo:registry address="multicast://224.5.6.7:1234" 
-                    file="${user.home}/.dubbo/mayi-dubbo-provider.cache" 
-                    register="false" />
+                    file="${user.home}/.dubbo/mayi-dubbo-provider.cache" />
     
 </beans>

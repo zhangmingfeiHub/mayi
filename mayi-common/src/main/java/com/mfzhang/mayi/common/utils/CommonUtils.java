@@ -35,4 +35,26 @@ public class CommonUtils {
 		return json;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param obj
+	 * @return
+	 * @author Guo YL 2017年9月25日 上午12:56:03
+	 */
+	public static String writeValueAsString(Object obj) {
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json = null;
+		
+		try {
+			json = objectMapper.writeValueAsString(obj);
+		} catch (Exception e) {
+			
+			logger.error("对象转json格式异常，msg={}", e);
+		}
+		
+		return json;
+	}
+	
 }

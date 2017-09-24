@@ -25,5 +25,7 @@
 	<dubbo:reference id="studentService" 
 	                 interface="com.mfzhang.mayi.dubbo.provider.service.StudentService"
 	                 url="dubbo://localhost:20890" />
+
+	<dubbo:reference id="userInfoService" interface="com.mfzhang.mayi.dubbo.provider.service.UserInfoService" />
     
 </beans>

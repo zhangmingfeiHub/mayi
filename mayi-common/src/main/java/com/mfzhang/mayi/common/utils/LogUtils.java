@@ -16,7 +16,7 @@ public class LogUtils {
 	 * 
 	 * @author mingfei.zhang 2017年8月6日 上午11:11:37
 	 */
-	public static void printNewLineLog(Logger logger, Level level) {
+	private static void printNewLineLog(Logger logger, Level level) {
 		
 		switch (level.toInt()) {
 			case EventConstants.DEBUG_INT:
