@@ -16,6 +16,7 @@
 		<module>mayi-dubbo-consumer</module>
 		<module>mayi-dubbo-provider-api</module>
 		<module>mayi-dubbo-consumer-api</module>
+		<module>myi-job-web</module>
 	</modules>
 	
 	<properties>
@@ -25,6 +26,7 @@
 		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+		<tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
 		<jdk.version>1.8</jdk.version>
 	
 		<spring.version>4.3.10.RELEASE</spring.version>
@@ -326,6 +328,13 @@
 				    	</execution> -->
 				    </executions>
 				</plugin>
+				
+				<!-- tomcat -->
+				<plugin>
+		          	<groupId>org.apache.tomcat.maven</groupId>
+		          	<artifactId>tomcat7-maven-plugin</artifactId>
+		          	<version>${tomcat7-maven-plugin.version}</version>
+		        </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>

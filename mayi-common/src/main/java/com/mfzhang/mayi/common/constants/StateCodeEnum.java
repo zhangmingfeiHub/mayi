@@ -10,6 +10,9 @@ public enum StateCodeEnum {
 	/** MY200:成功 */
 	CODE_SUCCESS("MY200", "成功"),
 	
+	/** MY300:失败 */
+	CODE_FAIL("MY300", "失败"),
+	
 	/** MY00001:参数错误 */
 	CODE_ERROR_PARAM("MY00001", "参数错误");
 	
