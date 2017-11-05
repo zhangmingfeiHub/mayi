@@ -49,6 +49,8 @@
 		<hibernate.validator.version>6.0.2.Final</hibernate.validator.version>
 		<javax.el.api.version>3.0.0</javax.el.api.version>
 		<javax.el.version>2.2.6</javax.el.version>
+		<!-- quartz 定时任务 -->
+		<quartz.version>2.3.0</quartz.version>
 	</properties>
 	
 	<profiles>
@@ -258,6 +260,17 @@
 			    <version>${javax.el.version}</version>
 			</dependency>
 			
+			<!-- quartz 定时任务 -->
+			<dependency>
+			    <groupId>org.quartz-scheduler</groupId>
+			    <artifactId>quartz</artifactId>
+			    <version>${quartz.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.quartz-scheduler</groupId>
+			    <artifactId>quartz-jobs</artifactId>
+			    <version>${quartz.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
