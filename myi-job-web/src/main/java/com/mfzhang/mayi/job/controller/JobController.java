@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mfzhang.mayi.common.WebResult;
@@ -25,11 +26,12 @@ public class JobController {
 	
 	@RequestMapping(value = "/do", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public WebResult<String> doJob(String param) {
+	public WebResult<String> doJob(@RequestParam(value = "a", required = false, defaultValue = "BBB") String param) {
 		WebResult<String> webResult = new WebResult<String>();
 		
 		LogUtils.printLog(logger, Level.INFO, "执行job，入参={}", param);
 		
+		webResult.success("成功");
 		return webResult;
 	}
 	
