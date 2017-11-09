@@ -1,9 +1,12 @@
 package com.mfzhang.mayi.job.test;
 
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.JobBuilder.*;
+import static org.quartz.TriggerBuilder.*;
+import static org.quartz.SimpleScheduleBuilder.*;
+import static org.quartz.CronScheduleBuilder.*;
+import static org.quartz.DateBuilder.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +18,9 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.calendar.HolidayCalendar;
+
+import com.mfzhang.mayi.common.constants.CommonConstants;
 
 /**
  * 测试quartz
@@ -27,7 +33,64 @@ public class QuartzTest {
 		//scheduler1();
 		//scheduler2();
 		//scheduler3();
-		scheduler4();
+		//scheduler4();
+		//scheduler5();
+		scheduler6();
+	}
+	
+	private static void scheduler6() {
+		SimpleDateFormat sdf = new SimpleDateFormat(CommonConstants.DATE_FORMAT_PATTER.YYYY_MM_DD_HH_MM_SS);
+		Date date1 = newDate().build(); // DateBuilder创建当前时间
+		System.out.println("date1: " + sdf.format(date1));
+	}
+	
+	private static void scheduler5() {
+		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
+			
+			JobDetail job1 = newJob(CalendarTriggerJob1.class)
+					.withIdentity("job1")
+					.build();
+			
+			JobDetail job2 = newJob(CalendarTriggerJob2.class)
+					.withIdentity("job2")
+					.build();
+			
+			HolidayCalendar holidayCalendar = new HolidayCalendar();
+			
+			Calendar cal1 = Calendar.getInstance();
+			cal1.set(2017, Calendar.NOVEMBER, 9, 22, 3, 0);
+			holidayCalendar.addExcludedDate(cal1.getTime());
+			
+			Calendar cal2 = Calendar.getInstance();
+			cal2.set(2017, Calendar.NOVEMBER, 9, 22, 7, 0);
+			holidayCalendar.addExcludedDate(cal2.getTime());
+			
+			scheduler.addCalendar("holidayCalendar", holidayCalendar, false, false);
+			
+			Trigger trigger1 = newTrigger()
+					.withIdentity("trigger1")
+					//.forJob("job1")
+					.withSchedule(atHourAndMinuteOnGivenDaysOfWeek(22, 5, Calendar.THURSDAY))
+					.modifiedByCalendar("holidayCalendar")
+					.build();
+			
+			Trigger trigger2 = newTrigger()
+					.withIdentity("trigger2")
+					//.forJob("job2")
+					.withSchedule(atHourAndMinuteOnGivenDaysOfWeek(22, 9, Calendar.THURSDAY))
+					.modifiedByCalendar("holidayCalendar")
+					.build();
+			
+			scheduler.scheduleJob(job1, trigger1);
+			scheduler.scheduleJob(job2, trigger2);
+			
+			Thread.sleep(5 * 60 * 1000);
+			scheduler.shutdown();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static void scheduler4() {

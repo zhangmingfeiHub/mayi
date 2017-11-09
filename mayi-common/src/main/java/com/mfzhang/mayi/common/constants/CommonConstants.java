@@ -30,4 +30,14 @@ public class CommonConstants {
 		public static final String EMAIL = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
 	}
 	
+	/**
+	 * 日期格式
+	 *
+	 * @author Guo YL 2017年11月9日 下午11:43:13
+	 */
+	public static class DATE_FORMAT_PATTER {
+		/** 未删除 */
+		public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+	}
+	
 }
