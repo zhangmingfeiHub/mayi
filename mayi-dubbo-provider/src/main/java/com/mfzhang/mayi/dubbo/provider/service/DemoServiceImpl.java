@@ -18,6 +18,7 @@ import com.mfzhang.mayi.common.utils.LogUtils;
  * @author Guo YL 2017年9月12日 上午12:10:02
  */
 @Service(timeout=30000,retries=2,protocol={"dubbo"}) // 声明需要暴露的服务接口
+@org.springframework.stereotype.Service("demoService")
 public class DemoServiceImpl implements DemoService {
 
 	private static final Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);
