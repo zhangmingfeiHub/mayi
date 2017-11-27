@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="helloSpringQuartzJob1" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="name" value="hw_job"/>
+		<property name="group" value="hw_group"/>
+		<property name="jobClass" value="com.mfzhang.mayi.job.test.HelloSpringQuartzJob"/>
+		
+		<!-- 必须设置为true，如果为false，当没有活动的触发器与之关联时会在调度器中会删除该任务  -->
+		<property name="durability" value="true"/>
+		
+		<!-- 指定spring容器的key，如果不设定在job中的jobmap中是获取不到spring容器的 -->
+		<property name="applicationContextJobDataKey" value="applicationContext"/>
+	</bean>
+	
+	<bean id="helloSpringQuartzJobCronTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="name" value="hw_trigger"/>
+		<property name="group" value="hw_trigger_group"/>
+		<property name="jobDetail" ref="helloSpringQuartzJob1"/>
+		<property name="cronExpression" value="0/5 * * * * ?"/>
+	</bean>
+	
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="helloSpringQuartzJobCronTrigger1"/>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

@@ -3,6 +3,7 @@ package com.mfzhang.mayi.job;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 @ComponentScan(basePackageClasses = MarkInterface.class, excludeFilters = {
 		@ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class})
 })
+@ImportResource("classpath*:spring/spring-*.xml")
 public class WebConfig {
 
 }

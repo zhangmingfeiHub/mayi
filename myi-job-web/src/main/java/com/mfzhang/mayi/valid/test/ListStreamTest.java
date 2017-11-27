@@ -27,9 +27,10 @@ public class ListStreamTest {
 			add(new Phone(1, "content1", 0));
 			add(new Phone(2, "provinceCode2", 0));
 			add(new Phone(3, "provinceCode3", 0));
+			add(new Phone(4, "provinceCode3", 1));
 		}};
 		
-		List<String> provinceCodeList = addressList.stream().map(Address::getProvinceCode).collect(Collectors.toList());
+		/*List<String> provinceCodeList = addressList.stream().map(Address::getProvinceCode).collect(Collectors.toList());
 		System.out.println(CommonUtils.writeValueAsString(provinceCodeList));
 		
 		List<String> contentList = phoneList.stream().filter(phone -> provinceCodeList.contains(phone.getContent())).map(Phone::getContent).collect(Collectors.toList());
@@ -44,7 +45,12 @@ public class ListStreamTest {
 			address.setProvinceCode(phone.getContent() + "phone");
 			addressList2.add(address);
 		});
-		System.out.println(CommonUtils.writeValueAsString(addressList2));
+		System.out.println(CommonUtils.writeValueAsString(addressList2));*/
+		
+		List<Phone> filterPhoneList = phoneList.stream()
+				.filter(phone -> phone.getContent().equals("provinceCode3"))
+				.filter(phone -> phone.getType() == 1).collect(Collectors.toList());
+		System.out.println(CommonUtils.writeValueAsString(filterPhoneList));
 	}
 	
 }
