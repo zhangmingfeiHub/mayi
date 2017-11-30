@@ -1,9 +1,13 @@
 package com.mfzhang.mayi.common.utils;
 
+import java.text.SimpleDateFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 /**
  * 容器工具类，此工具类会注册到Spring容器中
@@ -48,6 +52,12 @@ public class CommonUtils {
 		String json = null;
 		
 		try {
+			// ObjectMapper Date类型默认转为timestamp形式，现取消默认
+			objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+			// 设置自定义Date格式
+			objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+			// objectMapper.getSerializationConfig().with(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+			// objectMapper.getDeserializationConfig().with(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 			json = objectMapper.writeValueAsString(obj);
 		} catch (Exception e) {
 			

@@ -1,6 +1,7 @@
 package com.mfzhang.mayi.job.test;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 
@@ -16,6 +17,7 @@ public class User implements Serializable {
 
 	private Integer id;
 	private String name;
+	private Date birth;
 
 	public Integer getId() {
 		return id;
@@ -31,6 +33,14 @@ public class User implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Date getBirth() {
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 
 }

@@ -19,6 +19,7 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.calendar.HolidayCalendar;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.mfzhang.mayi.common.constants.CommonConstants;
 
@@ -35,7 +36,12 @@ public class QuartzTest {
 		//scheduler3();
 		//scheduler4();
 		//scheduler5();
-		scheduler6();
+//		scheduler6();
+		scheduler7();
+	}
+	
+	private static void scheduler7() {
+		new AnnotationConfigApplicationContext(com.mfzhang.mayi.job.WebConfig.class);
 	}
 	
 	private static void scheduler6() {
