@@ -51,6 +51,11 @@ public class ListStreamTest {
 				.filter(phone -> phone.getContent().equals("provinceCode3"))
 				.filter(phone -> phone.getType() == 1).collect(Collectors.toList());
 		System.out.println(CommonUtils.writeValueAsString(filterPhoneList));
+		
+		List<Phone> filterPhoneList2 = phoneList.stream()
+				.filter(phone -> phone.getContent().equals("provinceCode3")).collect(Collectors.toList());
+		System.out.println(CommonUtils.writeValueAsString(filterPhoneList2));
+		
 	}
 	
 }

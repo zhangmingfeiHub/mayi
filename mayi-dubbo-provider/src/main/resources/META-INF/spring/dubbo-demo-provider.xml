@@ -9,7 +9,7 @@
     
     <dubbo:annotation package="com.mfzhang.mayi.dubbo.provider" />
     
-    <dubbo:protocol name="dubbo" port="20890" />
+    <dubbo:protocol name="dubbo" port="20991" />
     <!-- <dubbo:protocol name="rmi" port="1099" /> -->
     
     <!-- 使用multicast广播注册中心暴露服务地址 -->

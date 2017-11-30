@@ -40,6 +40,8 @@ public class UserInfo implements Serializable {
 	@NotNull(message = "电话不能为空")
 	@Size(max = 3, message = "电话最多3个")
 	private List<Phone> phoneList;
+	
+	private String remark;
 
 	public Integer getId() {
 		return id;
@@ -79,6 +81,20 @@ public class UserInfo implements Serializable {
 
 	public void setPhoneList(List<Phone> phoneList) {
 		this.phoneList = phoneList;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	@Override
+	public String toString() {
+		return "UserInfo [id=" + id + ", username=" + username + ", birthDate=" + birthDate + ", address=" + address
+				+ ", phoneList=" + phoneList + ", remark=" + remark + "]";
 	}
 
 }

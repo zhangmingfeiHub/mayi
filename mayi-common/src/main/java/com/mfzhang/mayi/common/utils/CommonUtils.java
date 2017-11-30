@@ -57,4 +57,26 @@ public class CommonUtils {
 		return json;
 	}
 	
+	/**
+	 * 
+	 * @param content
+	 * @param clazz
+	 * @return
+	 * @author mingfei.zhang 2017年11月28日 上午10:32:03
+	 */
+	public static Object readValue(String content, Class clazz) {
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		Object object = null;
+		
+		try {
+			object = objectMapper.readValue(content, clazz);
+		} catch (Exception e) {
+			
+			logger.error("json格式转对象异常，msg={}", e);
+		}
+		
+		return object;
+	}
+	
 }

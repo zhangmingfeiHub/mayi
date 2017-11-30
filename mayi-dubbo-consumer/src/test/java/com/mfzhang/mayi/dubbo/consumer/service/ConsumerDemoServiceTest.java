@@ -15,22 +15,22 @@ public class ConsumerDemoServiceTest extends BaseServiceTest {
 	
 	@Test
 	public void testSayTo() {
-		consumerDemoService.sayTo("Bob");
+//		consumerDemoService.sayTo("Bob");
 	}
 	
 	@Test
 	public void testPrintStudentInfo() {
-		consumerDemoService.printStudentInfo(100);
+//		consumerDemoService.printStudentInfo(100);
 	}
 	
 	@Test
 	public void testSaveUserInfo() {
-		consumerDemoService.saveUserInfo();
+//		consumerDemoService.saveUserInfo();
 	}
 
 	@Test
 	public void testUpdateUserInfo() {
-		consumerDemoService.updateUserInfo();
+//		consumerDemoService.updateUserInfo();
 	}
 	
 }
