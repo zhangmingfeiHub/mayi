@@ -56,6 +56,8 @@ public class CommonUtils {
 			objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 			// 设置自定义Date格式
 			objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+			
+			// 这种方式不生效，可能是个bug
 			// objectMapper.getSerializationConfig().with(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 			// objectMapper.getDeserializationConfig().with(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 			json = objectMapper.writeValueAsString(obj);

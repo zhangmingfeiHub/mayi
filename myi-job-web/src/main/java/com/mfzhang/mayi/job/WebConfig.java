@@ -6,6 +6,7 @@ import java.util.Collections;
 
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,12 +14,14 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
+import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 import org.springframework.stereotype.Controller;
 
 import com.mfzhang.mayi.common.constants.CommonConstants;
 import com.mfzhang.mayi.job.test.User;
+import com.mfzhang.mayi.job.test.spring.HelloQuartzWithSpringMethodInvokingSupportJob;
 import com.mfzhang.mayi.job.test.spring.HelloQuartzWithSpringSupportJob;
 
 /**
@@ -39,6 +42,15 @@ public class WebConfig {
 		helloSpringQuartzJob.setJobClass(HelloQuartzWithSpringSupportJob.class);
 		helloSpringQuartzJob.setDurability(true);
 		helloSpringQuartzJob.setJobDataAsMap(Collections.singletonMap("user", user));
+		
+		return helloSpringQuartzJob;
+	}
+	
+	@Bean
+	public MethodInvokingJobDetailFactoryBean helloQuartzWithSpringMethodInvoking(HelloQuartzWithSpringMethodInvokingSupportJob job) {
+		MethodInvokingJobDetailFactoryBean helloSpringQuartzJob = new MethodInvokingJobDetailFactoryBean();
+		helloSpringQuartzJob.setTargetObject(job);
+		helloSpringQuartzJob.setTargetMethod("helloQuartz");
 		
 		return helloSpringQuartzJob;
 	}
