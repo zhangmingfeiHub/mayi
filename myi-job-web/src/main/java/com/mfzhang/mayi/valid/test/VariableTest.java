@@ -1,5 +1,9 @@
 package com.mfzhang.mayi.valid.test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+
 import com.mfzhang.mayi.common.utils.CommonUtils;
 
 /**
@@ -12,15 +16,19 @@ import com.mfzhang.mayi.common.utils.CommonUtils;
 public class VariableTest {
 
 	public static void main(String[] args) {
-		try {
-			VariableTest.class.newInstance().test1();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		test2();
+	}
+	
+	private static void test2() {
+		BigDecimal bd1 = new BigDecimal("12.000300");
+		BigDecimal bd2 = new BigDecimal("13.000000");
+		
+		NumberFormat nf = NumberFormat.getInstance();
+		String str1 = nf.format(12.3639);
+		String str2 = nf.format(bd2);
+		System.out.println(bd1.setScale(2,RoundingMode.HALF_UP));
+		System.out.println(str1);
+		System.out.println(str2);
 	}
 	
 	private void test1() {

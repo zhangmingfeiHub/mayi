@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  *
  * @author Guo YL 2017年11月5日 下午4:31:59
  */
-//@Configuration
+@Configuration
 @EnableWebMvc
 @ComponentScan(basePackageClasses = MarkInterface.class, useDefaultFilters = false, includeFilters = {
 		@ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class})
