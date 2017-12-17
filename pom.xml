@@ -18,7 +18,7 @@
 		<module>mayi-dubbo-consumer-api</module>
 		<module>mayi-maven</module>
 		<module>myi-job-web</module>
-		<module>mayi-ynf-ms</module>
+		<!-- <module>mayi-ynf-ms</module> -->
 	</modules>
 	
 	<properties>
