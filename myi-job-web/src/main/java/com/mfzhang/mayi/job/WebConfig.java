@@ -35,7 +35,7 @@ import com.mfzhang.mayi.job.test.spring.HelloQuartzWithSpringSupportJob;
 @ImportResource("classpath*:spring/spring-*.xml")
 public class WebConfig {
 
-	@Bean
+	/*@Bean
 	public JobDetailFactoryBean helloSpringQuartzJob(User user) {
 		JobDetailFactoryBean helloSpringQuartzJob = new JobDetailFactoryBean();
 		helloSpringQuartzJob.setJobClass(HelloQuartzWithSpringSupportJob.class);
@@ -95,6 +95,6 @@ public class WebConfig {
 		}
 		
 		return user;
-	}
+	}*/
 	
 }

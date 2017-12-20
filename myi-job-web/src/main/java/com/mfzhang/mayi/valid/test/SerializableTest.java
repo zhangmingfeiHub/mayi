@@ -22,9 +22,9 @@ public class SerializableTest {
 		String userInfoJson = CommonUtils.writeValueAsString(userInfo);
 		System.out.println(userInfoJson);*/
 		
-		String jsonStr = "{\"id\":2,\"username\":\"username\",\"birthDate\":1511836022560,\"address\":null,\"phoneList\":null}";
-		UserInfo userInfo = (UserInfo) CommonUtils.readValue(jsonStr, UserInfo.class);
-		System.out.println(userInfo.toString());
+		// String jsonStr = "{\"id\":2,\"username\":\"username\",\"birthDate\":1511836022560,\"address\":null,\"phoneList\":null}";
+		// UserInfo userInfo = (UserInfo) CommonUtils.readValue(jsonStr, UserInfo.class);
+		// System.out.println(userInfo.toString());
 	}
 	
 }

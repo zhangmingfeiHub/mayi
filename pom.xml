@@ -19,6 +19,7 @@
 		<module>mayi-maven</module>
 		<module>myi-job-web</module>
 		<!-- <module>mayi-ynf-ms</module> -->
+		<module>mayi-test</module>
 	</modules>
 	
 	<properties>
@@ -53,6 +54,8 @@
 		<javax.el.version>2.2.6</javax.el.version>
 		<!-- quartz 定时任务 -->
 		<quartz.version>2.3.0</quartz.version>
+		<!-- rabbitMq -->
+		<rabbitmq.version>5.0.0</rabbitmq.version>
 	</properties>
 	
 	<profiles>
@@ -79,6 +82,9 @@
 			<properties>
 				<env>company</env>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 	</profiles>
 	
@@ -279,6 +285,13 @@
 			    <groupId>org.quartz-scheduler</groupId>
 			    <artifactId>quartz-jobs</artifactId>
 			    <version>${quartz.version}</version>
+			</dependency>
+			
+			<!-- rabbitMq 消息队列 -->
+			<dependency>
+			    <groupId>com.rabbitmq</groupId>
+			    <artifactId>amqp-client</artifactId>
+			    <version>${rabbitmq.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

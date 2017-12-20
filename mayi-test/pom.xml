@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mfzhang.mayi</groupId>
+		<artifactId>mayi-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>mayi-test</artifactId>
+	<name>MAYI TEST</name>
+	
+	<dependencies>
+  		<!-- 引入自己工程内的jar -->
+  		<dependency>
+		    <groupId>${project.groupId}</groupId>
+		    <artifactId>mayi-common</artifactId>
+		</dependency>
+  		
+  		<!-- junit -->
+    	<dependency>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+    	</dependency>
+    	
+		<!-- log jar -->
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		
+		<!-- quartz 定时任务 -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz-jobs</artifactId>
+		</dependency>
+		
+		<!-- rabbitMq 消息队列 -->
+		<dependency>
+		    <groupId>com.rabbitmq</groupId>
+		    <artifactId>amqp-client</artifactId>
+		</dependency>
+	</dependencies>
+	
+</project>
