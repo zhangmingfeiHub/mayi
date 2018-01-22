@@ -56,6 +56,8 @@
 		<quartz.version>2.3.0</quartz.version>
 		<!-- rabbitMq -->
 		<rabbitmq.version>5.0.0</rabbitmq.version>
+		<!-- poi excel -->
+		<poi.version>3.17</poi.version>
 	</properties>
 	
 	<profiles>
@@ -292,6 +294,13 @@
 			    <groupId>com.rabbitmq</groupId>
 			    <artifactId>amqp-client</artifactId>
 			    <version>${rabbitmq.version}</version>
+			</dependency>
+			
+			<!-- excel poi -->
+			<dependency>
+			    <groupId>org.apache.poi</groupId>
+			    <artifactId>poi-ooxml</artifactId>
+			    <version>${poi.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
