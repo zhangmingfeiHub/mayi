@@ -40,4 +40,14 @@ public class CommonConstants {
 		public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 	}
 	
+	/**
+	 * 分隔符
+	 * @author mingfei.z
+	 *
+	 */
+	public static class SEPARATOR_COMM {
+		/** 逗号 */
+		public static final String COMMA = ",";
+	}
+	
 }
