@@ -1,6 +1,7 @@
 package com.mfzhang.mayi.job.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -38,7 +39,7 @@ public class ExportServiceImpl implements ExportService {
 
 	@Override
 	public void exportUserXls(String[] titles, ServletOutputStream out) {
-		List<UserInfo> uiList = getUserInfos();
+		List<UserInfo> uiList = getData();
 		System.err.println(CommonUtils.writeValueAsString(uiList));
 		
 		HSSFWorkbook wb = new HSSFWorkbook(); // excel 文件对象
@@ -129,7 +130,7 @@ public class ExportServiceImpl implements ExportService {
 	
 	@Override
 	public void exportUserXlsx(String[] titles, ServletOutputStream out) {
-		List<UserInfo> uiList = getUserInfos();
+		List<UserInfo> uiList = getData();
 		System.err.println(CommonUtils.writeValueAsString(uiList));
 		
 		SXSSFWorkbook swb = new SXSSFWorkbook(1000); // 内存中保留 1000 条数据，以免内存溢出，其余写入 硬盘
@@ -137,11 +138,6 @@ public class ExportServiceImpl implements ExportService {
 		
 		SXSSFSheet sheet = swb.createSheet("员工账号");
 		sheet.setDefaultColumnWidth(20);
-		sheet.setAutobreaks(true);
-		sheet.trackAllColumnsForAutoSizing();
-		for (int i=0; i<titles.length; i++) {
-			sheet.autoSizeColumn(i); // 自动根据长度调整单元格长度
-		}
 		
 		CellStyle headerCellStyle = getHeadStyle(swb);
 		CellStyle bodyCellStyle = getBodyStyle(swb);
@@ -172,6 +168,12 @@ public class ExportServiceImpl implements ExportService {
 			bodyCell3.setCellValue(ui.getRemark());
 			
 		}
+
+		sheet.setAutobreaks(true);
+		sheet.trackAllColumnsForAutoSizing();
+		for (int i=0; i<titles.length; i++) {
+			sheet.autoSizeColumn(i, true); // 自动根据长度调整单元格长度
+		}
 		
 		try {
 			swb.write(out);
@@ -188,15 +190,17 @@ public class ExportServiceImpl implements ExportService {
 		}
 	}
 	
-	private List<UserInfo> getUserInfos() {
-		
+	@Override
+	public List<UserInfo> getData() {
+
 		List<UserInfo> uiList = new ArrayList<>();
 		
-		for (int i=0; i<5; i++) {
+		for (int i=0; i<1000; i++) {
 			UserInfo userInfo = new UserInfo();
 			userInfo.setId(1 + i);
-			userInfo.setUsername("name: " + (i+1));
-			userInfo.setRemark("remark: " + (i+1));
+			userInfo.setUsername("nameaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: " + (i+1));
+			userInfo.setRemark("备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注备注: " + (i+1));
+			userInfo.setBirthDate(new Date(new Date().getTime() + (i+1)*1000*60));
 			
 			uiList.add(userInfo);
 		}
@@ -246,7 +250,7 @@ public class ExportServiceImpl implements ExportService {
 		cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		cellStyle.setAlignment(HorizontalAlignment.CENTER); // 水平居中
 		cellStyle.setVerticalAlignment(VerticalAlignment.CENTER); // 设置垂直居中对齐
-		cellStyle.setWrapText(true); // 设置自动换行
+		// cellStyle.setWrapText(true); // 设置自动换行
 		
 		
 		Font font = wb.createFont(); // 创建字体样式
@@ -299,7 +303,7 @@ public class ExportServiceImpl implements ExportService {
 		CellStyle cellStyle = wb.createCellStyle(); // 单元格样式
 		cellStyle.setVerticalAlignment(VerticalAlignment.CENTER); // 设置垂直居中对齐
 		cellStyle.setAlignment(HorizontalAlignment.CENTER); // 水平居中
-		cellStyle.setWrapText(true); // 设置自动换行
+		// cellStyle.setWrapText(true); // 设置自动换行
 		
 		Font font = wb.createFont(); // 创建字体样式
 		font.setBold(false); // 字体普通

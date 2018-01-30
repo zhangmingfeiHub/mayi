@@ -1,6 +1,10 @@
 package com.mfzhang.mayi.job.service;
 
+import java.util.List;
+
 import javax.servlet.ServletOutputStream;
+
+import com.mfzhang.mayi.valid.test.UserInfo;
 
 /**
  * 
@@ -22,5 +26,11 @@ public interface ExportService {
 	 * @param out
 	 */
 	void exportUserXlsx(String[] titles, ServletOutputStream out);
+	
+	/**
+	 * 获取需要导出的数据
+	 * @return
+	 */
+	List<UserInfo> getData();
 	
 }

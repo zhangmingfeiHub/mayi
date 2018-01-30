@@ -9,7 +9,42 @@
 <script type="text/javascript">
 $(function() {
 	$("#export").click(function() {
-		$("#exportF").submit();
+		// $("#exportF").submit();
+		var id = $("#id").val();
+		var username = $("#username").val();
+		var remark = $("#remark").val();
+		
+		var obj = {
+				"id" : id,
+				"username" : username,
+				"remark" : remark
+		}
+		
+		var json = JSON.stringify(obj);
+		location.href = "user/view?json=" + json;
+		
+		/* $.ajax({
+			type: 'get',
+            url: 'user/view',
+            data: JSON.stringify(obj),
+            cache: false,
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (o) {
+                alert(o);
+            },
+            error:function(){
+            	alert("error");
+            },
+            async: true,
+            complete:function(){
+                nowPage = 1;
+            }
+		}); */
+	});
+	
+	$("#exprotBtn").click(function() {
+		$("#exportWithView").submit();
 	});
 });
 </script>
@@ -21,6 +56,10 @@ $(function() {
 	名称：<input type="text" id="username" /><br/>
 	备注：<input type="text" id="remark" /><br/>
 	<input id="export" type="button" value="提交" />
+	</form>
+	
+	<form action="./userWithSpringView" method="post" id="exportWithView">
+		<button id="exprotBtn">导出</button>
 	</form>
 
 </body>

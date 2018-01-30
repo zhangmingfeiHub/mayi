@@ -1,7 +1,6 @@
 package com.mfzhang.mayi.job.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,13 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mfzhang.mayi.common.utils.CommonUtils;
 import com.mfzhang.mayi.job.service.ExportService;
+import com.mfzhang.mayi.job.view.UserInfoExcelTemplateView;
 import com.mfzhang.mayi.valid.test.UserInfo;
 
 @Controller
@@ -58,32 +59,36 @@ public class ExportDataController {
 		return "exportView";
 	}
 	
-	@RequestMapping(value = "/user/view", method = RequestMethod.POST)
-	public String export(@RequestBody UserInfo userInfo, Model model) {
+	@RequestMapping(value = "/user/view")
+	public String export(@RequestParam(value = "json") String queryJson, HttpServletResponse response) {
 		
-		System.err.println(CommonUtils.writeValueAsString(userInfo));
+		System.err.println(queryJson);
+		UserInfo ui = (UserInfo) CommonUtils.readValue(queryJson, UserInfo.class);
 		
-		List<UserInfo> uiList = getUserInfos();
-		model.addAttribute("type", 1);
-		model.addAttribute("uiList", uiList);
+		System.err.println(CommonUtils.writeValueAsString(ui));
 		
-		return "userInfoExcelView";
-	}
-
-	private List<UserInfo> getUserInfos() {
-		
-		List<UserInfo> uiList = new ArrayList<>();
-		
-		for (int i=0; i<5; i++) {
-			UserInfo userInfo = new UserInfo();
-			userInfo.setId(1 + i);
-			userInfo.setUsername("name: " + (i+1));
-			userInfo.setRemark("remark: " + (i+1));
+		try {
+			ServletOutputStream out = response.getOutputStream();
+			String fileName = new String("用户_".getBytes("gbk"), "ISO-8859-1") + new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + ".xlsx";
+			response.setHeader("Content-disposition", "attachment; filename=" + fileName);
 			
-			uiList.add(userInfo);
+			String[] titles = getTitles().split(",");
+			exportService.exportUserXlsx(titles, out);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		return uiList;
+		return null;
 	}
 	
+	@RequestMapping(value = "/userWithSpringView", method = RequestMethod.POST)
+	public ModelAndView exportData() {
+		
+		List<UserInfo> uiList = exportService.getData();
+		ModelMap model = new ModelMap();
+		model.addAttribute("uiList", uiList);
+		
+		return new ModelAndView(new UserInfoExcelTemplateView(), model);
+	}
+
 }
