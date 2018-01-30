@@ -84,7 +84,7 @@ public class UserInfoExcelTemplateView extends AbstractXlsxStreamingView {
 		}
 		
 		String encode = request.getCharacterEncoding(); // 获取请求时的编码
-		System.err.println("encode: " + encode);
+		System.err.println("中文encode: " + encode);
 		if (StringUtils.isEmpty(encode)) {
 			encode = "UTF-8";
 		}
