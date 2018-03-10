@@ -1,9 +1,11 @@
 package com.mfzhang.mayi.common.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationConfig;
@@ -17,6 +19,14 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class CommonUtils {
 
 	private final static Logger logger = LoggerFactory.getLogger(CommonUtils.class);
+
+	private static final char[] CHECK_BIT_ARRAY = { '1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2' };
+	private static final int CHECK_BIT_LENGTH = CHECK_BIT_ARRAY.length;
+
+	private static final int[] W = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
+	private static final int W_LENGTH = W.length;
+
+	private static final Pattern IDCARD_PATTERN = Pattern.compile("\\d{15}(\\d{2}[Xx\\d])?");
 	
 	/**
 	 * 把对象转json格式
@@ -89,6 +99,41 @@ public class CommonUtils {
 		}
 		
 		return object;
+	}
+
+	/**
+	 * 判断身份证号码是否有效<br/>
+	 * true: 有效<br/>
+	 * false: 无效
+	 * 
+	 * @author mingfei.z
+	 * @param value
+	 * @return
+	 */
+	public static boolean isValid(String value) {
+		if (!StringUtils.hasText(value)) {
+			return false;
+		}
+
+		// 15位身份证不校验
+		if (value.length() == 15) {
+			return true;
+		}
+		
+		if (!IDCARD_PATTERN.matcher(value).matches()) {
+			return false;
+		}
+		
+		int s = 0;
+		for (int i = 0; i < W_LENGTH; i++) {
+			s += Integer.parseInt(String.valueOf(value.charAt(i))) * W[i];
+		}
+		
+		return Character.toUpperCase(value.charAt(17)) == getCheckBit(s);
+	}
+
+	private static char getCheckBit(int s) {
+		return CHECK_BIT_ARRAY[s % CHECK_BIT_LENGTH];
 	}
 	
 }
