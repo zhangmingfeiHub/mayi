@@ -20,6 +20,7 @@
 		<module>myi-job-web</module>
 		<!-- <module>mayi-ynf-ms</module> -->
 		<module>mayi-test</module>
+		<module>mayi-webservice</module>
 	</modules>
 	
 	<properties>
