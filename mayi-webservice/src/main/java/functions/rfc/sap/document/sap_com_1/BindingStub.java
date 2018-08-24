@@ -5,9 +5,9 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package functions.rfc.sap.document.sap_com;
+package functions.rfc.sap.document.sap_com_1;
 
-public class BindingStub extends org.apache.axis.client.Stub implements functions.rfc.sap.document.sap_com.ZMM_MATERIAL_DATA_PortType {
+public class BindingStub extends org.apache.axis.client.Stub implements functions.rfc.sap.document.sap_com_1.ZMM_MATERIAL_DATA_PortType {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -25,10 +25,10 @@ public class BindingStub extends org.apache.axis.client.Stub implements function
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("ZMM_MATERIAL_DATA");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ET_DATA"), org.apache.axis.description.ParameterDesc.INOUT, new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "TABLE_OF_ZMM_MATERIAL_DATA"), functions.rfc.sap.document.sap_com.ZMM_MATERIAL_DATA_Type[].class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "ET_DATA"), org.apache.axis.description.ParameterDesc.INOUT, new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "TABLE_OF_ZMM_MATERIAL_DATA"), functions.rfc.sap.document.sap_com_1.ZMM_MATERIAL_DATA_Type[].class, false, false);
         param.setItemQName(new javax.xml.namespace.QName("", "item"));
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "IN_DATE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "char8"), java.lang.String.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "IN_DATE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "date10"), java.lang.String.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "IN_MATNR"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "char18"), java.lang.String.class, false, false);
@@ -123,14 +123,14 @@ public class BindingStub extends org.apache.axis.client.Stub implements function
             cachedSerFactories.add(org.apache.axis.encoding.ser.BaseSerializerFactory.createFactory(org.apache.axis.encoding.ser.SimpleSerializerFactory.class, cls, qName));
             cachedDeserFactories.add(org.apache.axis.encoding.ser.BaseDeserializerFactory.createFactory(org.apache.axis.encoding.ser.SimpleDeserializerFactory.class, cls, qName));
 
-            qName = new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "char8");
+            qName = new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "char9");
             cachedSerQNames.add(qName);
             cls = java.lang.String.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(org.apache.axis.encoding.ser.BaseSerializerFactory.createFactory(org.apache.axis.encoding.ser.SimpleSerializerFactory.class, cls, qName));
             cachedDeserFactories.add(org.apache.axis.encoding.ser.BaseDeserializerFactory.createFactory(org.apache.axis.encoding.ser.SimpleDeserializerFactory.class, cls, qName));
 
-            qName = new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "char9");
+            qName = new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "date10");
             cachedSerQNames.add(qName);
             cls = java.lang.String.class;
             cachedSerClasses.add(cls);
@@ -146,7 +146,7 @@ public class BindingStub extends org.apache.axis.client.Stub implements function
 
             qName = new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "TABLE_OF_ZMM_MATERIAL_DATA");
             cachedSerQNames.add(qName);
-            cls = functions.rfc.sap.document.sap_com.ZMM_MATERIAL_DATA_Type[].class;
+            cls = functions.rfc.sap.document.sap_com_1.ZMM_MATERIAL_DATA_Type[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "ZMM_MATERIAL_DATA");
             qName2 = new javax.xml.namespace.QName("", "item");
@@ -162,7 +162,7 @@ public class BindingStub extends org.apache.axis.client.Stub implements function
 
             qName = new javax.xml.namespace.QName("urn:sap-com:document:sap:rfc:functions", "ZMM_MATERIAL_DATA");
             cachedSerQNames.add(qName);
-            cls = functions.rfc.sap.document.sap_com.ZMM_MATERIAL_DATA_Type.class;
+            cls = functions.rfc.sap.document.sap_com_1.ZMM_MATERIAL_DATA_Type.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -233,7 +233,7 @@ public class BindingStub extends org.apache.axis.client.Stub implements function
         }
     }
 
-    public void ZMM_MATERIAL_DATA(functions.rfc.sap.document.sap_com.holders.TABLE_OF_ZMM_MATERIAL_DATAHolder ET_DATA, java.lang.String IN_DATE, java.lang.String IN_MATNR, javax.xml.rpc.holders.StringHolder OT_MESSAG, javax.xml.rpc.holders.StringHolder OT_SUBRC) throws java.rmi.RemoteException {
+    public void ZMM_MATERIAL_DATA(functions.rfc.sap.document.sap_com_1.holders.TABLE_OF_ZMM_MATERIAL_DATAHolder ET_DATA, java.lang.String IN_DATE, java.lang.String IN_MATNR, javax.xml.rpc.holders.StringHolder OT_MESSAG, javax.xml.rpc.holders.StringHolder OT_SUBRC) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -259,9 +259,9 @@ public class BindingStub extends org.apache.axis.client.Stub implements function
             java.util.Map _output;
             _output = _call.getOutputParams();
             try {
-                ET_DATA.value = (functions.rfc.sap.document.sap_com.ZMM_MATERIAL_DATA_Type[]) _output.get(new javax.xml.namespace.QName("", "ET_DATA"));
+                ET_DATA.value = (functions.rfc.sap.document.sap_com_1.ZMM_MATERIAL_DATA_Type[]) _output.get(new javax.xml.namespace.QName("", "ET_DATA"));
             } catch (java.lang.Exception _exception) {
-                ET_DATA.value = (functions.rfc.sap.document.sap_com.ZMM_MATERIAL_DATA_Type[]) org.apache.axis.utils.JavaUtils.convert(_output.get(new javax.xml.namespace.QName("", "ET_DATA")), functions.rfc.sap.document.sap_com.ZMM_MATERIAL_DATA_Type[].class);
+                ET_DATA.value = (functions.rfc.sap.document.sap_com_1.ZMM_MATERIAL_DATA_Type[]) org.apache.axis.utils.JavaUtils.convert(_output.get(new javax.xml.namespace.QName("", "ET_DATA")), functions.rfc.sap.document.sap_com_1.ZMM_MATERIAL_DATA_Type[].class);
             }
             try {
                 OT_MESSAG.value = (java.lang.String) _output.get(new javax.xml.namespace.QName("", "OT_MESSAG"));

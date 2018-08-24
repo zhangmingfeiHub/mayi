@@ -6,9 +6,9 @@ package com.mfzhang.mayi.webservice;
 
 import java.util.List;
 
-import cn.com.webxml.ArrayOfString;
-import cn.com.webxml.WeatherWebService;
-import cn.com.webxml.WeatherWebServiceSoap;
+import cn.com.webxml_3.ArrayOfString;
+import cn.com.webxml_3.WeatherWebService;
+import cn.com.webxml_3.WeatherWebServiceSoap;
 
 /**
  * 
