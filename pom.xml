@@ -56,7 +56,7 @@
 		<!-- quartz 定时任务 -->
 		<quartz.version>2.3.0</quartz.version>
 		<!-- rabbitMq -->
-		<rabbitmq.version>5.0.0</rabbitmq.version>
+		<rabbitmq.version>[5.4.0,)</rabbitmq.version>
 		<!-- poi excel -->
 		<poi.version>3.17</poi.version>
 	</properties>
